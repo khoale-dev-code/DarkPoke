@@ -1,16 +1,16 @@
-# Dark Poke — Header, Trang chủ, Footer, Tìm kiếm & Thư viện thẻ V14.26
+# Dark Poke — Header, Trang chủ, Footer, Tìm kiếm & Thư viện thẻ V14.30
 
 Bản vá thay header và trang chủ. Thanh tiện ích trên cùng ("HUNT · TRADE · COLLECT / Giao hàng toàn quốc…") được bỏ hẳn. Header mới gọn một hàng, trong suốt khi nằm trên ảnh hero của trang chủ và chuyển sang nền kính mờ khi cuộn. Hai banner mới (30th Celebration ETB, Perfect Order ETB) đã được tối ưu thành WebP và đóng gói ngay trong file PowerShell.
 
 ## Chạy trên Windows PowerShell
 
-Tải `Dark-Poke-Header-Home-V14-26.ps1` vào `C:\Users\Bin77\Downloads`. Dừng server bằng Ctrl+C trước khi áp dụng.
+Tải `Dark-Poke-Header-Home-V14-30.ps1` vào `C:\Users\Bin77\Downloads`. Dừng server bằng Ctrl+C trước khi áp dụng.
 
 ```powershell
 cd "D:\freetime\dark-poke"
-powershell -NoProfile -ExecutionPolicy Bypass -File "C:\Users\Bin77\Downloads\Dark-Poke-Header-Home-V14-26.ps1" -DryRun
+powershell -NoProfile -ExecutionPolicy Bypass -File "C:\Users\Bin77\Downloads\Dark-Poke-Header-Home-V14-30.ps1" -DryRun
 if ($LASTEXITCODE -ne 0) { throw "DryRun chua dat; dung tai day." }
-powershell -NoProfile -ExecutionPolicy Bypass -File "C:\Users\Bin77\Downloads\Dark-Poke-Header-Home-V14-26.ps1"
+powershell -NoProfile -ExecutionPolicy Bypass -File "C:\Users\Bin77\Downloads\Dark-Poke-Header-Home-V14-30.ps1"
 if ($LASTEXITCODE -ne 0) { throw "Ban va chua thanh cong; xem loi phia tren." }
 npm run dev
 ```
@@ -23,6 +23,36 @@ npm run dev
 - `-ProjectRoot`: chỉ định thư mục dự án nếu không chạy từ `D:\freetime\dark-poke`.
 
 Bản vá không thêm package, không đổi `.env.local`, không thao tác Supabase hay SQL. Chạy lại lần hai sẽ báo "da ap dung" và không ghi gì.
+
+## V14.30: webhook SePay tự xác nhận đơn đã chuyển khoản
+
+- `/api/webhooks/bank` trả `{"success": true}` cho mọi lần nhận thành công. SePay chỉ coi webhook thành công khi nhận đúng body này; trước đó SePay báo lỗi và gửi lại tối đa 7 lần.
+- Nhận cả hai cách xác thực của SePay, cùng dùng `BANK_WEBHOOK_SECRET`: **API Key** (`Authorization: Apikey …`) và **HMAC-SHA256** (`X-SePay-Signature`, `X-SePay-Timestamp`, lệch giờ tối đa 5 phút).
+- Mã đơn lấy từ trường `code` của SePay nếu có, nếu không thì tìm `DP` + số trong nội dung chuyển khoản (chấp nhận "DP 100123", "DP-100123").
+- Cấu hình trong SePay → Webhooks: URL `https://<tên-miền>/api/webhooks/bank`, Loại giao dịch "Tiền vào", Định dạng JSON, bật "Tự động gửi lại"; tab Bảo mật chọn API Key hoặc HMAC-SHA256 và dán cùng giá trị `BANK_WEBHOOK_SECRET`. Nên khai báo tiền tố mã thanh toán `DP` trong Công ty → Cấu hình chung → Cấu trúc mã thanh toán.
+- Webhook chỉ chạy trên bản đã deploy có Supabase và `SUPABASE_SERVICE_ROLE_KEY`; ở chế độ demo hoặc localhost trả 503.
+
+## V14.29: trang giỏ hàng (`/gio-hang`)
+
+- Cùng phong cách với trang đặt hàng: danh sách sản phẩm trong một khung, ảnh lớn, tên, phiên bản, nhãn Đặt trước, đơn giá và thành tiền từng dòng.
+- Nút tăng/giảm số lượng 44 × 44 px dễ bấm trên điện thoại; khi chạm giới hạn tồn kho hiện "Tối đa N sản phẩm".
+- Xóa sản phẩm hiện thanh "Đã xóa … Hoàn tác" để lấy lại ngay nếu bấm nhầm.
+- Khung tóm tắt có phí vận chuyển tham khảo (nội thành TP.HCM, tỉnh khác, nhận tại cửa hàng) lấy từ cài đặt cửa hàng, và thanh tiến độ miễn phí giao hàng nếu cửa hàng bật mức miễn phí.
+
+## V14.28: trang đặt hàng (`/thanh-toan`)
+
+- Địa chỉ giao hàng chia ba bước: **Tỉnh, thành phố** (34 đơn vị) → **Phường, xã** (ô tìm kiếm, gõ có dấu hay không dấu đều được, ví dụ "ben thanh") → **Số nhà, tên đường**. Đổi tỉnh thì phường, xã chọn lại. Bên dưới hiện dòng "Giao đến …" để khách kiểm tra.
+- Danh sách 3.321 phường, xã, đặc khu theo Nghị quyết 202/2025/QH15 (687 phường, 2.621 xã, 13 đặc khu) nằm ở `src/lib/vn-address/wards.ts`, chỉ tải khi khách chọn giao tận nơi (~16 KB). Nếu tải lỗi, form quay về một ô địa chỉ như cũ.
+- Đơn lưu như trước: `province` là tỉnh, `address` là "số nhà, tên đường, phường/xã". Không đổi database.
+- Chọn cách nhận hàng bằng hai ô lớn có biểu tượng và phí ngay trên ô.
+- Khung "Đơn hàng của bạn" rộng hơn (440 px): ảnh sản phẩm lớn, tên đủ 3 dòng, phiên bản, nhãn Đặt trước, đơn giá × số lượng, thành tiền từng dòng, nơi giao, phí vận chuyển kèm lý do, gợi ý mua thêm để được miễn phí (nếu cửa hàng bật), tổng tiền lớn và nút "Xác nhận đặt hàng · tổng tiền". Có nút "Sửa giỏ hàng".
+
+## V14.27: khu danh mục và dịch vụ dưới banner
+
+- Lối tắt chia hai nhóm có nhãn: **Danh mục** (Sealed, Thẻ lẻ, Thẻ grading, Phụ kiện, có ảnh minh họa và một dòng mô tả) và **Dịch vụ** (Pre-order, Thu mua thẻ, Thư viện thẻ, có biểu tượng, lời hứa ngắn và mũi tên). Thời gian báo giá thu mua lấy từ cài đặt cửa hàng.
+- Các ô trong một hàng rộng bằng nhau nên không còn cảnh 4 ô trên, 3 ô dưới lệch phải.
+- Màn hình rộng: tiêu đề bên trái, đoạn giới thiệu bên phải, hai nhóm trải hết chiều ngang bên dưới. Điện thoại: danh mục 2 × 2, dịch vụ là ba ô nhỏ trên một hàng; không còn thanh cuộn ngang.
+- Thêm một câu giới thiệu dưới tiêu đề để khách biết cửa hàng bán gì và làm được gì.
 
 ## V14.26: thêm banner One Piece vào trang chủ
 
@@ -231,7 +261,7 @@ Tỉ lệ giống nhau trên mọi màn hình (máy tính, tablet, điện tho�
 - TCGplayer không có giá (thẻ promo, bản phát hành riêng…) thì khung tự mở giá Cardmarket kèm ghi chú, không còn báo "chưa có giá" trong khi phía dưới lại có giá.
 - Không nguồn nào có giá thì hiện liên kết tìm tin đăng trên TCGplayer và Cardmarket.
 - Khung Cardmarket riêng ở cột phải được bỏ để không lặp; cột phải chỉ còn thông tin lá bài.
-- Script V14.26 chạy được từ source gốc hoặc từ bản V14 đến V14.25.
+- Script V14.30 chạy được từ source gốc hoặc từ bản V14 đến V14.29.
 
 ## V14.3: tìm kiếm dạng bảng lệnh và thư viện thẻ có giá TCGplayer
 
@@ -282,7 +312,7 @@ Chi phí API: lần đầu xem một lá bài tốn khoảng 1 credit để kh�
 
 - Thay ảnh cắt giữa trên điện thoại bằng hai banner dọc mới: `public/home-v14/celebration-30th-portrait.webp`, `public/home-v14/perfect-order-portrait.webp`.
 - Xóa hai ảnh cũ `celebration-30th-mobile.webp`, `perfect-order-mobile.webp` (có sao lưu).
-- Script V14.26 chạy được từ source gốc hoặc từ bản đã áp dụng V14 đến V14.25.
+- Script V14.30 chạy được từ source gốc hoặc từ bản đã áp dụng V14 đến V14.29.
 
 ## Header
 
@@ -320,10 +350,10 @@ Chưa kiểm tra: Windows PowerShell 5.1 thật, Safari/iOS thật, dữ liệu 
 
 ## Khôi phục
 
-Script in đường dẫn `.patch-backup\Header-Home-V14-26-...` và lệnh rollback đầy đủ. Nếu typecheck/build sau khi vá thất bại, script tự khôi phục. Nếu file đã bị chỉnh tiếp sau khi vá, rollback dừng để không mất thay đổi đó.
+Script in đường dẫn `.patch-backup\Header-Home-V14-30-...` và lệnh rollback đầy đủ. Nếu typecheck/build sau khi vá thất bại, script tự khôi phục. Nếu file đã bị chỉnh tiếp sau khi vá, rollback dừng để không mất thay đổi đó.
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File "C:\Users\Bin77\Downloads\Dark-Poke-Header-Home-V14-26.ps1" -Rollback -BackupPath "D:\freetime\dark-poke\.patch-backup\Header-Home-V14-26-THOI-GIAN"
+powershell -NoProfile -ExecutionPolicy Bypass -File "C:\Users\Bin77\Downloads\Dark-Poke-Header-Home-V14-30.ps1" -Rollback -BackupPath "D:\freetime\dark-poke\.patch-backup\Header-Home-V14-30-THOI-GIAN"
 ```
 
 Nếu báo `Source mismatch`, không ghi đè cưỡng bức. Cần đối chiếu các file được liệt kê với source thực tế.

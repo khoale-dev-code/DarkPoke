@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import type { CSSProperties } from 'react'
-import { ArrowUpRight, BookOpen, Repeat2, Timer } from 'lucide-react'
+import { ArrowRight, ArrowUpRight, BookOpen, Repeat2, Timer } from 'lucide-react'
 import { ProductImage } from '@/components/shop/product-image'
 import type { HomeData } from '../server/data'
 import { HomeMotionShell } from './motion-shell'
@@ -12,6 +12,8 @@ import '../home.css'
 import '../home-v14.css'
 
 const TYPE_ART: Record<string, string> = { sealed: '/art/box1.svg', 'the-le': '/art/card1.svg', 'the-grading': '/art/slab1.svg', 'phu-kien': '/art/deck1.svg' }
+/** One short line under each category so the shortcut says what is inside, not only its name. */
+const TYPE_NOTE: Record<string, string> = { sealed: 'Box, ETB, pack nguyên seal', 'the-le': 'Lá lẻ theo bộ và độ hiếm', 'the-grading': 'PSA · BGS · CGC', 'phu-kien': 'Sleeve, binder, hộp đựng' }
 
 const pad = (value: number) => String(value).padStart(2, '0')
 
@@ -33,11 +35,12 @@ function stories(data: HomeData): Story[] {
 
 export function HomeStorefront({ data }: { data: HomeData }) {
   const { settings, products, latest, preorders, types, typeNames } = data
-  const shortcuts = [
-    ...types.map((type) => ({ href: `/san-pham?type=${encodeURIComponent(type.code)}`, label: type.name, art: TYPE_ART[type.code] ?? '/art/pack1.svg' })),
-    ...(settings.modules.preorder ? [{ href: '/pre-order', label: 'Pre-order', icon: Timer }] : []),
-    ...(settings.modules.tradein ? [{ href: '/thu-mua', label: 'Thu mua', icon: Repeat2 }] : []),
-    { href: '/thu-vien-the', label: 'Thư viện thẻ', icon: BookOpen }
+  // V14.27: categories and services are two separate groups with equal-width tiles, so the block reads as a menu instead of a ragged row of chips.
+  const categories = types.map((type) => ({ href: `/san-pham?type=${encodeURIComponent(type.code)}`, label: type.name, note: TYPE_NOTE[type.code], art: TYPE_ART[type.code] ?? '/art/pack1.svg' }))
+  const services = [
+    ...(settings.modules.preorder ? [{ href: '/pre-order', label: 'Pre-order', note: 'Giữ suất bộ sắp phát hành', icon: Timer }] : []),
+    ...(settings.modules.tradein ? [{ href: '/thu-mua', label: 'Thu mua thẻ', note: `Báo giá trong ${settings.rules.tradein_quote_hours} giờ`, icon: Repeat2 }] : []),
+    { href: '/thu-vien-the', label: 'Thư viện thẻ', note: 'Tra cứu và giá thị trường', icon: BookOpen }
   ]
   const tiles = stories(data)
   // V14.16 Explore: the first story becomes the key art of a dark stage, the rest are dealt as a fan of cards across its edge.
@@ -50,12 +53,28 @@ export function HomeStorefront({ data }: { data: HomeData }) {
       <div className="hp-intro-copy">
         <span className="hp-eyebrow">Dark Poke · Hunt · Trade · Collect</span>
         <h1 id="home-title">Thẻ bài chính hãng cho người sưu tầm.</h1>
+        <p className="hp-intro-lead">Sealed, thẻ lẻ, thẻ grading và phụ kiện. Đặt trước bộ mới, bán lại thẻ của bạn hoặc tra giá từng lá bài.</p>
       </div>
-      <nav className="hp-shortcuts" aria-label="Danh mục nổi bật">
-        {shortcuts.map((item) => <Link prefetch={false} key={item.href} href={item.href} className="hp-shortcut">
-          <span className="hp-shortcut-art" aria-hidden="true">{'art' in item && item.art ? <ProductImage src={item.art} alt="" sizes="48px" /> : 'icon' in item && item.icon ? <item.icon size={22} strokeWidth={1.6} /> : null}</span>
-          <span>{item.label}</span>
-        </Link>)}
+      <nav className="hp-quick" aria-label="Lối tắt mua sắm">
+        {categories.length ? <div className="hp-quick-group">
+          <p className="hp-quick-label" id="hp-quick-shop">Danh mục</p>
+          <ul className="hp-quick-grid hp-quick-cats" aria-labelledby="hp-quick-shop">
+            {categories.map((item) => <li key={item.href}><Link prefetch={false} href={item.href} className="hp-cat">
+              <span className="hp-cat-art" aria-hidden="true"><ProductImage src={item.art} alt="" sizes="56px" /></span>
+              <span className="hp-quick-text"><b>{item.label}</b>{item.note ? <small>{item.note}</small> : null}</span>
+            </Link></li>)}
+          </ul>
+        </div> : null}
+        <div className="hp-quick-group">
+          <p className="hp-quick-label" id="hp-quick-services">Dịch vụ</p>
+          <ul className="hp-quick-grid hp-quick-services" aria-labelledby="hp-quick-services">
+            {services.map((item) => <li key={item.href}><Link prefetch={false} href={item.href} className="hp-service">
+              <span className="hp-service-icon" aria-hidden="true"><item.icon size={20} strokeWidth={1.8} /></span>
+              <span className="hp-quick-text"><b>{item.label}</b><small>{item.note}</small></span>
+              <ArrowRight className="hp-service-go" size={16} strokeWidth={2} aria-hidden="true" />
+            </Link></li>)}
+          </ul>
+        </div>
       </nav>
     </section>
 

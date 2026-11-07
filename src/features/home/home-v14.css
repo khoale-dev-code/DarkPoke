@@ -6,19 +6,61 @@
 .hp-eyebrow { display: block; color: var(--hp-blue); font-size: 13px; font-weight: 600; letter-spacing: -.005em; line-height: 1.5; }
 .dp-home .hp-heading h2, .dp-home .hp-intro h1 { font-family: var(--font-display); color: var(--hp-ink); text-wrap: balance; }
 
-/* Intro + shortcuts */
-.hp-intro { display: grid; grid-template-columns: minmax(0, 1fr); gap: 22px; padding-block: 40px 8px; }
-.dp-home .hp-intro h1 { margin-top: 8px; max-width: 18ch; font-size: clamp(28px, 3.4vw, 46px); font-weight: 750; line-height: 1.12; letter-spacing: -.035em; }
-.hp-shortcuts { display: flex; gap: 10px; overflow-x: auto; scrollbar-width: none; margin-inline: calc(-1 * var(--hp-pad)); padding: 2px var(--hp-pad) 6px; scroll-snap-type: x proximity; }
-.hp-shortcuts::-webkit-scrollbar { display: none; }
-.hp-shortcut { flex: none; scroll-snap-align: start; display: inline-flex; align-items: center; gap: 10px; min-height: 60px; padding: 6px 18px 6px 6px; border: 1px solid #e2e7f0; border-radius: 16px; background: #fff; color: var(--hp-ink); font-size: 14px; font-weight: 600; white-space: nowrap; transition: border-color 160ms ease, transform 160ms ease; }
-.hp-shortcut-art { display: flex; align-items: center; justify-content: center; width: 46px; height: 46px; flex: none; overflow: hidden; border-radius: 12px; background: #eef2fb; color: var(--hp-blue); }
-.hp-shortcut-art > span { width: 100%; height: 100%; background: transparent; }
-.hp-shortcut-art img { object-fit: contain; padding: 3px; }
-@media (min-width: 1100px) {
-  .hp-intro { grid-template-columns: minmax(0, .9fr) minmax(0, 1.4fr); align-items: end; gap: 40px; padding-top: 48px; }
-  .hp-shortcuts { flex-wrap: wrap; justify-content: flex-end; overflow: visible; margin: 0; padding: 0; }
+/* Intro + quick links (V14.27): copy on the left, two aligned groups on the right: categories with product art,
+   services with an icon and a one-line promise. Every tile in a row has the same width, so nothing wraps unevenly. */
+.hp-intro { display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px; padding-block: 40px 8px; }
+.dp-home .hp-intro h1 { margin-top: 8px; max-width: 16ch; font-size: clamp(28px, 3vw, 42px); font-weight: 750; line-height: 1.12; letter-spacing: -.035em; }
+.hp-intro-lead { max-width: 46ch; margin-top: 12px; color: var(--hp-muted); font-size: 15.5px; line-height: 1.6; }
+.hp-quick { display: grid; gap: 16px; min-width: 0; }
+.hp-quick-group { display: grid; gap: 8px; min-width: 0; }
+.hp-quick-label { color: var(--hp-muted); font-size: 12px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
+.hp-quick-grid { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+.hp-quick-cats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.hp-quick-services { grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr)); }
+.hp-quick-grid > li { display: flex; min-width: 0; }
+.hp-cat, .hp-service { position: relative; display: flex; flex: 1; min-width: 0; align-items: center; gap: 12px; border: 1px solid #e2e7f0; background: #fff; color: var(--hp-ink); transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease; }
+.hp-cat { min-height: 72px; padding: 8px 14px 8px 8px; border-radius: 16px; }
+.hp-service { min-height: 64px; padding: 10px 14px 10px 10px; border-radius: 14px; background: var(--hp-tint); border-color: transparent; }
+.hp-cat-art { display: flex; flex: none; align-items: center; justify-content: center; width: 54px; height: 54px; overflow: hidden; border-radius: 12px; background: #eef2fb; }
+.hp-cat-art > span { width: 100%; height: 100%; background: transparent; }
+.hp-cat-art img { object-fit: contain; padding: 4px; }
+.hp-service-icon { display: flex; flex: none; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 12px; background: #fff; color: var(--hp-blue); box-shadow: 0 1px 2px rgb(20 33 57 / .06); }
+.hp-quick-text { display: flex; flex: 1; min-width: 0; flex-direction: column; gap: 2px; }
+.hp-quick-text b { overflow: hidden; font-size: 14.5px; font-weight: 650; line-height: 1.3; text-overflow: ellipsis; white-space: nowrap; }
+.hp-quick-text small { display: -webkit-box; overflow: hidden; color: var(--hp-muted); font-size: 12.5px; line-height: 1.4; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; }
+.hp-service-go { flex: none; color: var(--hp-muted); transition: transform 160ms ease, color 160ms ease; }
+.hp-cat:focus-visible, .hp-service:focus-visible { outline: 2px solid var(--hp-blue); outline-offset: 2px; }
+@media (min-width: 768px) {
+  .hp-quick-cats { grid-template-columns: repeat(auto-fit, minmax(min(100%, 170px), 1fr)); }
 }
+/* Wide screens: headline and lead share one row, the two groups run full width below, so every tile has room for its note. */
+@media (min-width: 900px) {
+  .hp-intro { gap: 28px; padding-top: 48px; }
+  .hp-intro-copy { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 44ch); column-gap: 56px; align-items: end; }
+  .hp-intro-copy > .hp-eyebrow, .dp-home .hp-intro-copy > h1 { grid-column: 1; }
+  .hp-intro-lead { grid-column: 2; grid-row: 1 / span 2; align-self: end; margin: 0; }
+  .hp-quick { gap: 18px; }
+}
+@media (max-width: 767px) {
+  .hp-intro { gap: 20px; }
+  .hp-intro-lead { font-size: 14.5px; }
+  .hp-cat { min-height: 64px; gap: 10px; padding: 6px 10px 6px 6px; }
+  .hp-cat-art { width: 48px; height: 48px; }
+  .hp-quick-text b { font-size: 14px; }
+  .hp-quick-text small { font-size: 12px; }
+  /* Phones: services become three compact tiles in one row instead of three full-width rows. */
+  .hp-quick-services { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 8px; }
+  .hp-service { flex-direction: column; justify-content: center; gap: 8px; min-height: 0; padding: 12px 6px; text-align: center; }
+  .hp-service .hp-quick-text { align-items: center; }
+  .hp-service .hp-quick-text b { font-size: 13px; white-space: normal; }
+  .hp-service .hp-quick-text small, .hp-service-go { display: none; }
+}
+@media (max-width: 420px) {
+  .hp-cat { gap: 8px; padding: 6px 8px 6px 6px; }
+  .hp-cat-art { width: 42px; height: 42px; border-radius: 10px; }
+  .hp-cat .hp-quick-text b { font-size: 13.5px; }
+}
+@media (max-width: 340px) { .hp-cat-art { display: none; } .hp-cat { padding-left: 12px; } }
 
 /* Bands and headings */
 .hp-band { padding-block: 52px; }
@@ -70,7 +112,9 @@
 
 
 @media (hover: hover) and (pointer: fine) {
-  .hp-shortcut:hover { border-color: #9fb4ef; transform: translateY(-2px); }
+  .hp-cat:hover { border-color: #9fb4ef; box-shadow: 0 6px 18px rgb(22 51 102 / .07); transform: translateY(-2px); }
+  .hp-service:hover { background: #eef2fb; }
+  .hp-service:hover .hp-service-go { color: var(--hp-blue); transform: translateX(3px); }
   .hp-rail-controls button:not(:disabled):hover { background: #eef2fb; }
   .hp-more:hover { text-decoration: underline; text-underline-offset: 4px; }
 }
@@ -78,11 +122,9 @@
   .hp-intro { padding-top: 28px; }
   .hp-band { padding-block: 36px; }
   .hp-heading { margin-bottom: 16px; }
-  .hp-shortcut { min-height: 56px; font-size: 13px; padding-right: 14px; }
-  .hp-shortcut-art { width: 42px; height: 42px; }
 }
-@media (prefers-reduced-motion: reduce) { .hp-shortcut { transition: none !important; } }
-@media (forced-colors: active) { .hp-shortcut, .hp-rail-controls button { border: 1px solid CanvasText; } }
+@media (prefers-reduced-motion: reduce) { .hp-cat, .hp-service, .hp-service-go { transition: none !important; } }
+@media (forced-colors: active) { .hp-cat, .hp-service, .hp-rail-controls button { border: 1px solid CanvasText; } }
 
 /* V14.16 Explore, inspired by the Pokémon TCG gallery pages: a dark "Phantasmal" stage holds the lead story as key art,
    its curved horizon glows violet, and the other stories are dealt as a fan of cards across that edge onto the ivory band. */
