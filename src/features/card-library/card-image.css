@@ -1,0 +1,20 @@
+/* V14.5 card imagery: source note and a card-shaped placeholder when no image exists anywhere. */
+.dex-image-note { position: absolute; left: 6px; bottom: 6px; z-index: 1; max-width: calc(100% - 12px); padding: 2px 8px; border-radius: 999px; background: rgb(20 33 57 / .78); color: #fff; font-size: 10px; font-weight: 600; line-height: 1.6; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; pointer-events: none; }
+.dex-image-large .dex-image-note { left: 10px; bottom: 10px; font-size: 11.5px; padding: 3px 10px; }
+
+.dex-ph {
+  position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: space-between;
+  padding: 9% 8%; border-radius: 4.5% / 3.3%; overflow: hidden; color: #fff; text-align: center;
+  background: radial-gradient(120% 70% at 50% 0%, #2f4f9e 0%, #1a2a55 55%, #0f1834 100%);
+  box-shadow: inset 0 0 0 4px #e8c95a, inset 0 0 0 7px #0f1834;
+}
+.dex-ph::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(135deg, rgb(255 255 255 / .04) 0 10px, transparent 10px 20px); pointer-events: none; }
+.dex-ph-name { position: relative; max-width: 100%; font-family: var(--font-display); font-size: clamp(12px, 1.25vw, 16px); font-weight: 750; line-height: 1.25; letter-spacing: -.01em; overflow-wrap: anywhere; text-wrap: balance; }
+.dex-ph-ball { position: relative; width: 38%; aspect-ratio: 1; border-radius: 50%; background: linear-gradient(#e5484d 0 46%, #0f1834 46% 54%, #f4f6fb 54%); box-shadow: 0 0 0 3px #0f1834, 0 8px 22px rgb(0 0 0 / .35); opacity: .9; }
+.dex-ph-ball::after { content: ''; position: absolute; inset: 36%; border-radius: 50%; background: #f4f6fb; box-shadow: 0 0 0 3px #0f1834; }
+.dex-ph-meta { position: relative; color: rgb(255 255 255 / .78); font-size: clamp(10px, .9vw, 12px); line-height: 1.4; overflow-wrap: anywhere; }
+.dex-ph-tag { position: relative; padding: 2px 9px; border-radius: 999px; background: rgb(255 255 255 / .14); color: rgb(255 255 255 / .9); font-size: 10px; font-weight: 600; }
+.dex-image-large .dex-ph-name { font-size: clamp(18px, 2vw, 26px); }
+.dex-image-large .dex-ph-meta { font-size: 13px; }
+.dex-image-large .dex-ph-tag { font-size: 12px; padding: 3px 12px; }
+@media (forced-colors: active) { .dex-ph { border: 2px solid CanvasText; } }

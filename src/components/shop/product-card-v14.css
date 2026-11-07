@@ -1,0 +1,45 @@
+/* V14.11 product card, shared by the home rails, /san-pham and related products. */
+.shop-ui .pc { position: relative; display: flex; flex-direction: column; min-width: 0; overflow: hidden; border: 1px solid #e4e9f1; border-radius: 20px; background: #fff;
+  transition: transform 220ms cubic-bezier(.2, .7, .2, 1), box-shadow 220ms ease, border-color 220ms ease; }
+.shop-ui .pc[data-soldout] .pc-media img { opacity: .55; filter: grayscale(.4); }
+.shop-ui .pc-media { position: relative; display: block; padding: 14px; background: radial-gradient(120% 90% at 50% 8%, #ffffff 0%, #f2f5fa 72%); }
+.shop-ui .pc-media .product-image { border-radius: 14px; background: transparent; }
+.shop-ui .pc-media img { object-fit: contain; padding: 2px; transition: transform 320ms cubic-bezier(.2, .7, .2, 1); }
+.shop-ui .pc-badges { position: absolute; top: 12px; left: 12px; z-index: 1; display: flex; flex-wrap: wrap; gap: 6px; }
+.shop-ui .pc-badges .pill { min-height: 24px; padding: 3px 10px; border-radius: 999px; font-size: 11.5px; font-weight: 650; box-shadow: 0 1px 2px rgb(20 33 57 / .08); }
+.shop-ui .pc-body { display: flex; flex: 1; flex-direction: column; gap: 6px; padding: 14px 16px 16px; }
+.shop-ui .pc-type { color: #6a7891; font-size: 12px; font-weight: 500; letter-spacing: .01em; }
+.shop-ui .pc-name { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 2.8em; color: #142139; font-size: 15.5px; font-weight: 600; line-height: 1.4; letter-spacing: -.005em; }
+.shop-ui .pc-price { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; margin-top: auto; padding-top: 6px; }
+.shop-ui .pc-price strong { color: #142139; font-family: var(--font-sans); font-size: 19px; font-weight: 750; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.shop-ui .pc-price del { color: #8a96a8; font-size: 12.5px; font-variant-numeric: tabular-nums; }
+.shop-ui .pc-off { padding: 1px 6px; border-radius: 6px; background: #fdecec; color: #c23434; font-size: 11.5px; font-weight: 700; }
+.shop-ui .pc-foot { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 8px; padding-top: 10px; border-top: 1px solid #eef1f6; }
+.shop-ui .pc-status { display: inline-flex; align-items: center; gap: 7px; min-width: 0; color: #4d5a70; font-size: 12.5px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.shop-ui .pc-status::before { content: ''; width: 7px; height: 7px; flex: none; border-radius: 50%; background: #1f9d55; box-shadow: 0 0 0 3px rgb(31 157 85 / .14); }
+.shop-ui .pc-status[data-tone=warn]::before { background: #d97706; box-shadow: 0 0 0 3px rgb(217 119 6 / .15); }
+.shop-ui .pc-status[data-tone=neu]::before { background: #8a96a8; box-shadow: 0 0 0 3px rgb(138 150 168 / .18); }
+.shop-ui .pc-status[data-tone=brand]::before { background: #1b4fe0; box-shadow: 0 0 0 3px rgb(27 79 224 / .14); }
+.shop-ui .pc-arrow { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; flex: none; border-radius: 50%; background: #f1f4fb; color: #1b4fe0; transition: background-color 200ms ease, color 200ms ease, transform 220ms ease; }
+.shop-ui .pc:focus-visible { outline: 3px solid #1b4fe0; outline-offset: 3px; }
+
+@media (hover: hover) and (pointer: fine) {
+  .shop-ui .pc:hover { transform: translateY(-3px); border-color: #d3dbe8; box-shadow: 0 20px 40px -24px rgb(20 33 57 / .35); }
+  .shop-ui .pc:hover .pc-media img { transform: scale(1.04); }
+  .shop-ui .pc:hover .pc-arrow { background: #1b4fe0; color: #fff; transform: rotate(45deg); }
+}
+@media (max-width: 639px) {
+  .shop-ui .pc { border-radius: 16px; }
+  .shop-ui .pc-media { padding: 10px; }
+  .shop-ui .pc-badges { top: 9px; left: 9px; }
+  .shop-ui .pc-badges .pill { min-height: 22px; padding: 2px 8px; font-size: 10.5px; }
+  .shop-ui .pc-body { gap: 5px; padding: 11px 12px 13px; }
+  .shop-ui .pc-type { font-size: 11.5px; }
+  .shop-ui .pc-name { font-size: 14px; }
+  .shop-ui .pc-price strong { font-size: 16.5px; }
+  .shop-ui .pc-foot { margin-top: 6px; padding-top: 8px; }
+  .shop-ui .pc-status { font-size: 11.5px; }
+  .shop-ui .pc-arrow { width: 30px; height: 30px; }
+}
+@media (prefers-reduced-motion: reduce) { .shop-ui .pc, .shop-ui .pc-media img, .shop-ui .pc-arrow { transition: none; } .shop-ui .pc:hover { transform: none; } .shop-ui .pc:hover .pc-media img { transform: none; } }
+@media (forced-colors: active) { .shop-ui .pc { border-color: CanvasText; } .shop-ui .pc-status::before { background: CanvasText; } }

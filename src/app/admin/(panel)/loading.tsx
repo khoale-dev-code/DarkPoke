@@ -1,0 +1,3 @@
+export default function Loading() {
+  return <div role="status" aria-label="Đang tải nội dung quản trị" className="flex flex-col gap-6"><span className="sr-only">Đang tải…</span><div aria-hidden="true" className="flex flex-col gap-6"><div className="skeleton h-8 w-48" /><div className="skeleton h-4 w-64 max-w-full" /><div className="admin-stat-grid">{[0,1,2,3].map((i) => <div key={i} className="card flex h-32 flex-col gap-4 p-5"><div className="skeleton h-3 w-24" /><div className="skeleton h-8 w-32 max-w-full" /></div>)}</div><div className="card flex flex-col gap-5 p-5">{[0,1,2,3,4].map((i) => <div key={i} className="skeleton h-11 w-full" />)}</div></div></div>
+}

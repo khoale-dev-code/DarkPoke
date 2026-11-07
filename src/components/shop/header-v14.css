@@ -1,0 +1,89 @@
+/* Dark Poke V14 header: one compact bar, glass when solid, clear over the home hero. */
+.shop-ui { --dph-h: 64px; --dph-ink: #142139; --dph-blue: #1b4fe0; }
+@media (max-width: 767px) { .shop-ui { --dph-h: 56px; } }
+
+.shop-ui .shop-header.dph-header {
+  position: sticky; top: 0; z-index: 50;
+  height: var(--dph-h);
+  padding: 0; border: 0; box-shadow: none;
+  background: transparent;
+  color: var(--dph-ink);
+  transition: color 280ms ease;
+}
+/* Glass lives on a pseudo-element: a filter on the header itself would trap the fixed scrim. */
+.dph-header::before {
+  content: ''; position: absolute; inset: 0; z-index: -1;
+  background: rgb(255 255 255 / .8);
+  border-bottom: 1px solid rgb(20 33 57 / .08);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+  transition: opacity 280ms ease;
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) { .dph-header::before { background: #fff; } }
+/* V14.25: on phones and tablets the bar is almost opaque instead of a live blur, which the GPU had to redo on every scrolled frame. */
+@media (hover: none), (pointer: coarse) { .dph-header::before { background: rgb(255 255 255 / .97); -webkit-backdrop-filter: none; backdrop-filter: none; } }
+.shop-ui .shop-header.dph-header[data-tone=overlay] { color: #fff; }
+.dph-header[data-tone=overlay]::before { opacity: 0; -webkit-backdrop-filter: none; backdrop-filter: none; }
+
+.dph-inner {
+  height: 100%; max-width: 1440px; margin-inline: auto;
+  padding-inline: clamp(16px, 3vw, 40px);
+  display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  grid-template-areas: "brand nav actions"; align-items: center; column-gap: 24px;
+}
+.dph-menu { grid-area: menu; display: none; }
+.dph-brand { grid-area: brand; display: flex; align-items: center; gap: 10px; min-width: 0; }
+.dph-header .shop-brand { color: inherit; font-size: 20px; letter-spacing: -.6px; min-height: 44px; }
+.dph-header .shop-brand img { width: auto; height: 28px; max-width: 132px; }
+.dph-header[data-tone=overlay] .shop-brand img { filter: drop-shadow(0 1px 10px rgb(0 0 0 / .35)); }
+.dph-demo { padding: 2px 8px; border: 1px solid currentColor; border-radius: 999px; font-size: 10px; font-weight: 600; letter-spacing: .4px; opacity: .7; }
+
+.dph-nav { grid-area: nav; }
+.dph-nav ul { display: flex; align-items: center; gap: clamp(14px, 1.8vw, 30px); }
+.dph-nav a { position: relative; display: inline-flex; align-items: center; min-height: 44px; font-size: 13px; font-weight: 500; letter-spacing: -.01em; white-space: nowrap; opacity: .82; transition: opacity 160ms ease; }
+.dph-nav a::after { content: ''; position: absolute; left: 0; right: 0; bottom: 9px; height: 1.5px; border-radius: 2px; background: currentColor; transform: scaleX(0); transition: transform 200ms ease; }
+.dph-nav a[aria-current] { opacity: 1; font-weight: 600; }
+.dph-nav a[aria-current]::after { transform: scaleX(1); }
+
+.dph-actions { grid-area: actions; justify-self: end; display: flex; align-items: center; gap: 4px; }
+.dph-icon { position: relative; display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 999px; color: inherit; cursor: pointer; transition: background-color 160ms ease; }
+.dph-badge { position: absolute; top: 3px; right: 1px; display: inline-flex; align-items: center; justify-content: center; min-width: 17px; height: 17px; padding-inline: 4px; border-radius: 999px; background: var(--dph-blue); color: #fff; font-size: 10px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.dph-header[data-tone=overlay] .dph-badge { background: #fff; color: var(--dph-ink); }
+.dph-header :is(a, button):focus-visible { outline: 2px solid currentColor; outline-offset: 2px; border-radius: 8px; }
+
+/* Menu trigger reuses the existing drawer, restyled for the bar. */
+.dph-header .shop-menu-toggle { display: inline-flex; width: 40px; min-height: 40px; height: 40px; padding: 0; border-radius: 999px; color: inherit; background: transparent; }
+.dph-header .shop-menu-toggle > span { display: none; }
+
+@media (hover: hover) and (pointer: fine) {
+  .dph-nav a:hover { opacity: 1; }
+  .dph-nav a:hover::after { transform: scaleX(1); }
+  .dph-icon:hover, .dph-header .shop-menu-toggle:hover { background: rgb(20 33 57 / .07); }
+  .dph-header[data-tone=overlay] :is(.dph-icon, .shop-menu-toggle):hover { background: rgb(255 255 255 / .16); }
+}
+
+/* Wide desktop keeps the nav; narrower screens use the drawer. */
+@media (min-width: 1180px) { .dph-header .shop-menu-toggle { display: none; } }
+@media (max-width: 1179px) {
+  .dph-inner { grid-template-areas: "menu brand actions"; }
+  .dph-menu { display: flex; }
+  .dph-brand { justify-self: center; }
+  .dph-nav { display: none; }
+}
+@media (max-width: 767px) {
+  .dph-inner { column-gap: 8px; padding-inline: 8px; }
+  .dph-icon, .dph-header .shop-menu-toggle { width: 44px; height: 44px; min-height: 44px; }
+  .dph-account { display: none; }
+  .dph-header .shop-brand img { height: 24px; }
+  .dph-demo { display: none; }
+}
+
+/* V14.8: no hover hit-testing while the page is moving (set by smooth-scroll.ts). */
+html[data-scrolling] .shop-ui main { pointer-events: none; }
+
+/* Sticky panels were tuned for the old 150px header. */
+.shop-ui :is(.shop-gallery, .shop-summary, .shop-payment-sidebar, .dex-detail-art) { top: calc(var(--dph-h) + 24px); }
+
+@media (prefers-reduced-motion: reduce) { .dph-header, .dph-header *, .dph-header::before { transition: none !important; } }
+@media (forced-colors: active) { .dph-header::before { background: Canvas; } .dph-header { color: CanvasText; } .dph-badge { border: 1px solid CanvasText; } }
+@media print { .dph-header { display: none !important; } }

@@ -1,0 +1,60 @@
+/* V14 hero: full-bleed under the transparent header; the art never sits behind the bar. */
+.hp-hero {
+  --hp-bar: 56px;
+  --hp-art-h: min(calc(100vw * 784 / 1920), calc(100svh - var(--dph-h, 64px) - var(--hp-bar)));
+  position: relative; isolation: isolate; overflow: hidden;
+  margin-top: calc(-1 * var(--dph-h, 64px));
+  background: #0c1424; color: #fff;
+}
+.hp-hero-stage { position: relative; padding-top: var(--dph-h, 64px); touch-action: pan-y pinch-zoom; }
+.hp-hero-frame { height: var(--hp-art-h); }
+.hp-hero-slide { position: absolute; inset: 0; opacity: 0; pointer-events: none; transition: opacity 700ms ease; }
+.hp-hero-slide.is-active { z-index: 1; opacity: 1; pointer-events: auto; }
+/* V14.24: no translateZ(0) here. As its own GPU layer the blur was recomputed on every scrolled frame (about 30 fps); painted normally it is blurred once and then only moved. */
+.hp-hero-backdrop { position: absolute; inset: -32px; background-image: var(--hp-bd); background-position: center; background-size: cover; filter: blur(18px) saturate(1.15); }
+.hp-hero-backdrop::after { content: ''; position: absolute; inset: 0; background: rgb(6 10 22 / .38); }
+.hp-hero-link { position: absolute; left: 0; right: 0; top: var(--dph-h, 64px); height: var(--hp-art-h); display: block; }
+.hp-hero-link:focus-visible { outline: 2px solid #fff; outline-offset: -6px; }
+.hp-hero-img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 40px, #000 calc(100% - 14px), transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 40px, #000 calc(100% - 14px), transparent 100%);
+}
+.hp-hero-fallback { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 24px; color: #dfe7f7; font-size: 13px; line-height: 1.7; text-align: center; }
+.hp-hero-scrim { position: absolute; inset: 0 0 auto; z-index: 2; height: calc(var(--dph-h, 64px) + 56px); background: linear-gradient(rgb(5 9 20 / .55), rgb(5 9 20 / 0)); pointer-events: none; }
+
+.hp-hero-bar { position: relative; z-index: 3; height: var(--hp-bar); max-width: 1440px; margin-inline: auto; padding-inline: clamp(16px, 3vw, 40px); display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 16px; }
+.hp-hero-caption { display: flex; align-items: center; gap: 12px; min-width: 0; color: rgb(255 255 255 / .82); font-size: 12px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.hp-hero-caption > span { font-family: var(--font-mono); font-size: 11px; color: #fff; }
+.hp-hero-dots { display: flex; align-items: center; gap: 4px; }
+.hp-hero-dot { display: inline-flex; align-items: center; width: 64px; height: 44px; padding-inline: 4px; cursor: pointer; }
+.hp-hero-track { position: relative; display: block; width: 100%; height: 2px; overflow: hidden; border-radius: 2px; background: rgb(255 255 255 / .3); }
+.hp-hero-fill { position: absolute; inset: 0; background: #fff; transform: scaleX(0); transform-origin: left center; }
+.hp-hero-dot[aria-current] .hp-hero-fill { animation: hp-hero-progress var(--hp-duration, 6000ms) linear forwards; }
+.hp-hero-bar[data-running=false] .hp-hero-dot[aria-current] .hp-hero-fill { animation: none; transform: scaleX(1); }
+.hp-hero-toggle { justify-self: end; display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border: 1px solid rgb(255 255 255 / .4); border-radius: 999px; color: #fff; cursor: pointer; transition: background-color 160ms ease; }
+.hp-hero :is(.hp-hero-dot, .hp-hero-toggle):focus-visible { outline: 2px solid #fff; outline-offset: 2px; border-radius: 8px; }
+@keyframes hp-hero-progress { to { transform: scaleX(1); } }
+@media (hover: hover) and (pointer: fine) { .hp-hero-toggle:hover { background: rgb(255 255 255 / .14); } .hp-hero-dot:hover .hp-hero-track { background: rgb(255 255 255 / .55); } }
+
+/* Phones: portrait banners (about 2:3). The frame fills the width but never pushes the bar
+   below the bottom tab bar; contain keeps the whole banner visible, the blur fills any gap. */
+@media (max-width: 767px) {
+  .hp-hero { --hp-bar: 48px; --hp-art-h: min(calc(100vw * 3 / 2), calc(100svh - var(--dph-h, 56px) - var(--hp-bar) - 64px)); }
+  .hp-hero-backdrop { background-image: var(--hp-bd-m); }
+  .hp-hero-img {
+    object-fit: contain;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 10px, #000 calc(100% - 10px), transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0, #000 10px, #000 calc(100% - 10px), transparent 100%);
+  }
+  .hp-hero-caption { display: none; }
+  .hp-hero-bar { grid-template-columns: 1fr auto; padding-inline: 12px 8px; }
+  .hp-hero-dots { justify-self: start; }
+  .hp-hero-dot { width: 52px; }
+  .hp-hero-toggle { width: 44px; height: 44px; border-color: transparent; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hp-hero-slide { transition: none !important; }
+  .hp-hero-dot[aria-current] .hp-hero-fill { animation: none !important; transform: scaleX(1); }
+}
+@media (forced-colors: active) { .hp-hero-track { background: GrayText; } .hp-hero-fill { background: CanvasText; } .hp-hero-toggle { border-color: ButtonText; } }

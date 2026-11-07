@@ -1,0 +1,1 @@
+export function CheckoutSteps({step}:{step:1|2|3}) {return <ol className="shop-checkout-steps" aria-label="Các bước mua hàng">{['Giỏ hàng','Thông tin nhận hàng','Thanh toán'].map((label,i)=><li key={label} aria-current={i+1===step?'step':undefined}><span>{i+1}</span>{label}</li>)}</ol>}

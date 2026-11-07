@@ -1,0 +1,69 @@
+/* V14.21 catalog, design option A (Dark Poke design system): light page, compact header, one toolbar, underlined type tabs. */
+.ct {
+  --ct-ink: #0b0b0c; --ct-muted: #55555b; --ct-line: #d9d9d4; --ct-control: #8a8a92; --ct-surface: #f5f5f3; --ct-brand: #1b4fe0; --ct-brand-subtle: #e6edff; --ct-brand-ink: #123aa8;
+  padding-block: 28px 64px; color: var(--ct-ink);
+}
+.ct-crumbs .shop-breadcrumb { align-items: center; gap: 8px; color: var(--ct-muted); font-size: 14px; }
+.ct-crumbs .shop-breadcrumb [aria-current], .ct-crumbs .shop-breadcrumb > span:last-child { color: var(--ct-ink); font-weight: 500; }
+.ct-crumbs .scroll-x { margin-top: 4px; }
+.ct-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px 32px; flex-wrap: wrap; margin-top: 18px; }
+.ct-copy { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.shop-ui .ct-title { margin: 0; font-family: var(--font-display); font-size: 40px; line-height: 44px; font-weight: 800; letter-spacing: -.5px; text-wrap: balance; }
+.ct-sub { max-width: 64ch; color: var(--ct-muted); font-size: 16px; line-height: 24px; text-wrap: pretty; }
+.ct-count { color: var(--ct-muted); font-size: 14px; white-space: nowrap; }
+.ct-count b { color: var(--ct-ink); font-weight: 700; font-variant-numeric: tabular-nums; }
+
+.ct .ctf { gap: 0; padding: 0; border-top: 0; }
+/* Toolbar: search, filters and sort on one grey strip. */
+.ctf-bar { display: flex; align-items: center; gap: 8px; margin-top: 28px; padding: 8px; border-radius: 12px; background: var(--ct-surface); }
+.ctf-search { display: flex; align-items: center; gap: 10px; flex: 1 1 320px; min-width: 0; height: 48px; padding: 0 6px 0 16px; border: 1px solid var(--ct-control); border-radius: 8px; background: #fff; color: var(--ct-muted); }
+.ctf-search:focus-within { outline: 2px solid var(--ct-brand); outline-offset: 2px; }
+.ctf-search input { flex: 1; min-width: 0; height: 100%; border: 0; outline: none; background: none; color: var(--ct-ink); font-size: 16px; }
+.ctf-search input::-webkit-search-cancel-button { display: none; }
+.ctf-clear { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 8px; color: var(--ct-muted); }
+.ctf-submit { display: inline-flex; align-items: center; justify-content: center; min-width: 56px; height: 36px; padding: 0 12px; border-radius: 6px; color: var(--ct-ink); font-size: 14px; font-weight: 600; }
+.ctf-btn, .ctf-sort { display: inline-flex; align-items: center; gap: 8px; height: 48px; padding: 0 16px; border: 1px solid var(--ct-control); border-radius: 8px; background: #fff; color: var(--ct-ink); font-size: 14px; font-weight: 600; white-space: nowrap; transition: border-color 160ms cubic-bezier(.2, 0, 0, 1); }
+.ctf-badge { display: inline-flex; align-items: center; justify-content: center; min-width: 20px; height: 20px; padding: 0 6px; border-radius: 999px; background: var(--ct-brand); color: #fff; font-size: 12px; font-weight: 700; }
+.ctf-sort { position: relative; gap: 4px; padding: 0 12px 0 16px; font-weight: 500; color: var(--ct-muted); }
+.ctf-sort select { appearance: none; height: 100%; padding: 0 22px 0 2px; margin-right: -22px; border: 0; outline: none; background: none; color: var(--ct-ink); font: inherit; font-weight: 600; cursor: pointer; }
+.ctf-sort svg { pointer-events: none; color: var(--ct-ink); }
+.ctf-sort:focus-within, .ctf-btn:focus-visible { outline: 2px solid var(--ct-brand); outline-offset: 2px; }
+
+/* Type tabs: underlined, scroll sideways on narrow screens. */
+.ctf-tabs { display: flex; gap: 28px; margin-top: 20px; border-bottom: 1px solid var(--ct-line); overflow-x: auto; scrollbar-width: none; }
+.ctf-tabs::-webkit-scrollbar { display: none; }
+.ctf-tabs > * { flex: none; display: inline-flex; align-items: center; gap: 6px; height: 48px; margin-bottom: -1px; border-bottom: 2px solid transparent; color: var(--ct-muted); font-size: 15px; font-weight: 500; transition: color 160ms cubic-bezier(.2, 0, 0, 1), border-color 160ms cubic-bezier(.2, 0, 0, 1); }
+.ctf-tabs > [aria-pressed=true] { border-bottom-color: var(--ct-ink); color: var(--ct-ink); font-weight: 700; }
+.ctf-tabs > :focus-visible { outline: 2px solid var(--ct-brand); outline-offset: -2px; border-radius: 4px; }
+.ctf-tab-link { color: var(--ct-brand) !important; }
+.ctf-tab-link span { padding: 2px 8px; border-radius: 999px; background: var(--ct-brand-subtle); color: var(--ct-brand-ink); font-size: 12px; font-weight: 600; }
+
+/* Active filters */
+.ctf-active { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; min-height: 44px; margin-top: 14px; }
+.ctf-active-label { color: var(--ct-muted); font-size: 14px; }
+.ctf-active > button { display: inline-flex; align-items: center; gap: 6px; min-height: 32px; padding: 0 10px 0 12px; border: 1px solid var(--ct-ink); border-radius: 999px; background: #fff; color: var(--ct-ink); font-size: 13px; font-weight: 600; }
+.ctf-active > .ctf-reset { margin-left: 4px; padding: 0 6px; border: 0; color: var(--ct-brand); font-size: 14px; }
+.ct .ctf + div { margin-top: 16px; }
+.ct .ctf:not(:has(.ctf-active)) + div { margin-top: 24px; }
+
+@media (hover: hover) and (pointer: fine) {
+  .ctf-btn:hover, .ctf-sort:hover { border-color: var(--ct-ink); }
+  .ctf-tabs > :hover { color: var(--ct-ink); }
+  .ctf-active > button:hover { background: var(--ct-surface); }
+  .ctf-active > .ctf-reset:hover { background: none; text-decoration: underline; text-underline-offset: 3px; }
+}
+@media (max-width: 767px) {
+  .ct { padding-block: 20px 40px; }
+  .ct-head { margin-top: 12px; gap: 6px; }
+  .shop-ui .ct-title { font-size: 32px; line-height: 38px; }
+  .ct-sub { display: none; }
+  .ctf-bar { flex-wrap: wrap; margin-top: 18px; }
+  .ctf-search { flex-basis: 100%; }
+  .ctf-btn, .ctf-sort { flex: 1 1 0; justify-content: center; height: 44px; min-width: 0; }
+  .ctf-sort > span { display: none; }
+  .ctf-tabs { gap: 22px; margin: 14px -16px 0; padding-inline: 16px; }
+  .ctf-tabs > * { height: 44px; }
+  .ctf-active { margin-top: 8px; }
+}
+@media (prefers-reduced-motion: reduce) { .ct * { transition: none !important; } }
+@media (forced-colors: active) { .ctf-tabs > [aria-pressed=true] { border-bottom-color: Highlight; } .ctf-bar { border: 1px solid CanvasText; } }

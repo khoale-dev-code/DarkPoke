@@ -1,0 +1,15 @@
+node_modules
+.next
+out
+.env
+.env.local
+.env.*.local
+*.tsbuildinfo
+next-env.d.ts
+.vercel
+npm-debug.log*
+setup.log
+
+# Local reversible admin updates
+.patch-backup/
+*.before-generation.bak
