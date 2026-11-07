@@ -1,16 +1,16 @@
-# Dark Poke — Header, Trang chủ, Footer, Tìm kiếm & Thư viện thẻ V14.30
+# Dark Poke — Header, Trang chủ, Footer, Tìm kiếm & Thư viện thẻ V14.33
 
 Bản vá thay header và trang chủ. Thanh tiện ích trên cùng ("HUNT · TRADE · COLLECT / Giao hàng toàn quốc…") được bỏ hẳn. Header mới gọn một hàng, trong suốt khi nằm trên ảnh hero của trang chủ và chuyển sang nền kính mờ khi cuộn. Hai banner mới (30th Celebration ETB, Perfect Order ETB) đã được tối ưu thành WebP và đóng gói ngay trong file PowerShell.
 
 ## Chạy trên Windows PowerShell
 
-Tải `Dark-Poke-Header-Home-V14-30.ps1` vào `C:\Users\Bin77\Downloads`. Dừng server bằng Ctrl+C trước khi áp dụng.
+Tải `Dark-Poke-Header-Home-V14-33.ps1` vào `C:\Users\Bin77\Downloads`. Dừng server bằng Ctrl+C trước khi áp dụng.
 
 ```powershell
 cd "D:\freetime\dark-poke"
-powershell -NoProfile -ExecutionPolicy Bypass -File "C:\Users\Bin77\Downloads\Dark-Poke-Header-Home-V14-30.ps1" -DryRun
+powershell -NoProfile -ExecutionPolicy Bypass -File "C:\Users\Bin77\Downloads\Dark-Poke-Header-Home-V14-33.ps1" -DryRun
 if ($LASTEXITCODE -ne 0) { throw "DryRun chua dat; dung tai day." }
-powershell -NoProfile -ExecutionPolicy Bypass -File "C:\Users\Bin77\Downloads\Dark-Poke-Header-Home-V14-30.ps1"
+powershell -NoProfile -ExecutionPolicy Bypass -File "C:\Users\Bin77\Downloads\Dark-Poke-Header-Home-V14-33.ps1"
 if ($LASTEXITCODE -ne 0) { throw "Ban va chua thanh cong; xem loi phia tren." }
 npm run dev
 ```
@@ -23,6 +23,24 @@ npm run dev
 - `-ProjectRoot`: chỉ định thư mục dự án nếu không chạy từ `D:\freetime\dark-poke`.
 
 Bản vá không thêm package, không đổi `.env.local`, không thao tác Supabase hay SQL. Chạy lại lần hai sẽ báo "da ap dung" và không ghi gì.
+
+## V14.33: màu chữ "Pokémon"
+
+- Chữ "Pokémon" trong tiêu đề Thư viện thẻ đổi sang vàng, viền xanh lá bài, bóng xanh đậm (chỉ đổi màu, giữ font của shop).
+
+## V14.32: đầu trang Thư viện thẻ theo mặt sau lá bài Pokémon
+
+- Ba lá bài xòe bên phải là ảnh mặt sau lá bài Pokémon (`public/library/card-back.webp`, 460 × 630), viền trắng như thẻ thật.
+- Chữ "Pokémon" trong tiêu đề màu đỏ Poké Ball, viền vàng, bóng xanh đậm.
+- Bảng màu lấy từ mặt sau lá bài trên nền sáng: xanh đậm của viền thẻ cho nút Tra cứu và các biểu tượng, quầng xanh nhạt, vàng nhạt và đỏ nhạt phía sau, vòng xoáy mờ sau xấp bài; chấm ở nhãn đầu trang thành Poké Ball nhỏ.
+
+## V14.31: trang tài khoản (`/tai-khoan`)
+
+- Hồ sơ là một "thẻ Trainer" nền sáng, viền holo pastel: ảnh Google (hoặc chữ viết tắt), tên, email, mã thành viên rút từ id tài khoản, và số đơn hàng, số yêu cầu thu mua, tổng đã mua (các đơn đã thanh toán trở đi).
+- Lời chào theo tên Google; nếu có đơn chờ thanh toán thì nhắc ngay số đơn. Bốn lối tắt: Mua sắm, Pre-order, Thu mua thẻ, Thư viện thẻ.
+- Mỗi đơn có thanh tiến trình Đặt hàng → Đã thanh toán → Đóng gói → Đang giao/Chờ nhận → Hoàn tất; đơn chờ thanh toán có nền vàng nhạt và nút "Thanh toán …₫".
+- Khi chưa có đơn hoặc yêu cầu thu mua, hiện minh họa và nút hành động thay cho một dòng chữ.
+- Chỉ dùng gradient tĩnh, không blur, để cuộn mượt trên điện thoại. Không đổi database.
 
 ## V14.30: webhook SePay tự xác nhận đơn đã chuyển khoản
 
@@ -261,7 +279,7 @@ Tỉ lệ giống nhau trên mọi màn hình (máy tính, tablet, điện tho�
 - TCGplayer không có giá (thẻ promo, bản phát hành riêng…) thì khung tự mở giá Cardmarket kèm ghi chú, không còn báo "chưa có giá" trong khi phía dưới lại có giá.
 - Không nguồn nào có giá thì hiện liên kết tìm tin đăng trên TCGplayer và Cardmarket.
 - Khung Cardmarket riêng ở cột phải được bỏ để không lặp; cột phải chỉ còn thông tin lá bài.
-- Script V14.30 chạy được từ source gốc hoặc từ bản V14 đến V14.29.
+- Script V14.33 chạy được từ source gốc hoặc từ bản V14 đến V14.32.
 
 ## V14.3: tìm kiếm dạng bảng lệnh và thư viện thẻ có giá TCGplayer
 
@@ -312,7 +330,7 @@ Chi phí API: lần đầu xem một lá bài tốn khoảng 1 credit để kh�
 
 - Thay ảnh cắt giữa trên điện thoại bằng hai banner dọc mới: `public/home-v14/celebration-30th-portrait.webp`, `public/home-v14/perfect-order-portrait.webp`.
 - Xóa hai ảnh cũ `celebration-30th-mobile.webp`, `perfect-order-mobile.webp` (có sao lưu).
-- Script V14.30 chạy được từ source gốc hoặc từ bản đã áp dụng V14 đến V14.29.
+- Script V14.33 chạy được từ source gốc hoặc từ bản đã áp dụng V14 đến V14.32.
 
 ## Header
 
@@ -350,10 +368,10 @@ Chưa kiểm tra: Windows PowerShell 5.1 thật, Safari/iOS thật, dữ liệu 
 
 ## Khôi phục
 
-Script in đường dẫn `.patch-backup\Header-Home-V14-30-...` và lệnh rollback đầy đủ. Nếu typecheck/build sau khi vá thất bại, script tự khôi phục. Nếu file đã bị chỉnh tiếp sau khi vá, rollback dừng để không mất thay đổi đó.
+Script in đường dẫn `.patch-backup\Header-Home-V14-33-...` và lệnh rollback đầy đủ. Nếu typecheck/build sau khi vá thất bại, script tự khôi phục. Nếu file đã bị chỉnh tiếp sau khi vá, rollback dừng để không mất thay đổi đó.
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File "C:\Users\Bin77\Downloads\Dark-Poke-Header-Home-V14-30.ps1" -Rollback -BackupPath "D:\freetime\dark-poke\.patch-backup\Header-Home-V14-30-THOI-GIAN"
+powershell -NoProfile -ExecutionPolicy Bypass -File "C:\Users\Bin77\Downloads\Dark-Poke-Header-Home-V14-33.ps1" -Rollback -BackupPath "D:\freetime\dark-poke\.patch-backup\Header-Home-V14-33-THOI-GIAN"
 ```
 
 Nếu báo `Source mismatch`, không ghi đè cưỡng bức. Cần đối chiếu các file được liệt kê với source thực tế.

@@ -164,3 +164,36 @@
   .dxl-hero *, .dxl-toolbar *, .dxl-mode::before { transition: none !important; }
 }
 @media (forced-colors: active) { .dxl-hero { border: 1px solid CanvasText; } .dxl-fan, .dxl-hero-glow { display: none; } .dxl-holo { color: CanvasText; background: none; } .dxl-search, .dxl-field { border: 1px solid CanvasText; } }
+
+/* V14.32 palette from the Pokémon card back: deep card blue, swirl light blue, logo yellow, Poké Ball red, on a bright background.
+   The fan shows the real card back; the word "Pokémon" is red with a yellow outline. */
+.dex-library { --ios-blue: #2456c8; --ios-blue-deep: #1a3d94; --dxl-yellow: #ffcb05; --dxl-red: #e3350d; --dxl-navy: #1f3f9a; }
+.dxl-hero { border-color: #dfe8fb; background: linear-gradient(160deg, #ffffff 0%, #f5f8ff 55%, #eaf1ff 100%); box-shadow: 0 1px 0 #fff inset, 0 30px 80px -44px rgb(31 63 154 / .4), 0 2px 6px rgb(31 63 154 / .05); }
+.dxl-hero-glow i:nth-child(1) { background: radial-gradient(closest-side, #b9cffb, transparent); }
+.dxl-hero-glow i:nth-child(2) { background: radial-gradient(closest-side, #ffe8a6, transparent); }
+.dxl-hero-glow i:nth-child(3) { background: radial-gradient(closest-side, #ffd6cc, transparent); opacity: .55; }
+.dxl-hero::after { background: linear-gradient(90deg, rgb(255 255 255 / .94) 0%, rgb(255 255 255 / .6) 48%, rgb(255 255 255 / 0) 75%); }
+/* Swirl rings behind the fan, echoing the vortex on the card back. Static. */
+.dxl-hero::before { content: ''; position: absolute; z-index: -2; right: clamp(-120px, -4vw, -40px); top: 50%; width: 620px; height: 620px; translate: 0 -50%; border-radius: 50%; pointer-events: none;
+  background: repeating-radial-gradient(circle at 50% 50%, rgb(36 86 200 / .07) 0 2px, transparent 2px 26px), radial-gradient(closest-side, rgb(185 207 251 / .55), transparent); }
+
+/* V14.33: yellow fill, card-blue outline, navy drop shadow (colours only; the shop's own typeface). */
+.dxl-holo { color: var(--dxl-yellow); background: none; -webkit-background-clip: border-box; background-clip: border-box;
+  -webkit-text-stroke: 6px #2a5bd7; paint-order: stroke fill; text-shadow: 0 4px 0 var(--dxl-navy), 0 9px 18px rgb(31 63 154 / .28); letter-spacing: -.01em; }
+.dxl-eyebrow::before { width: 10px; height: 10px; background: linear-gradient(var(--dxl-red) 0 44%, #1d1d1f 44% 56%, #fff 56%); box-shadow: 0 0 0 1px #1d1d1f; }
+
+.dxl-fan i { border: 0; border-radius: 12px; background: #1f3f9a url('/library/card-back.webp') center / cover no-repeat;
+  box-shadow: 0 0 0 3px #fff, 0 28px 50px -22px rgb(31 63 154 / .55), 0 2px 6px rgb(0 0 0 / .12); }
+.dxl-fan b { display: none; }
+.dxl-fan i::before { background: linear-gradient(105deg, transparent 42%, rgb(255 255 255 / .38) 50%, transparent 58%); }
+
+.dxl-search:focus-within { box-shadow: 0 0 0 4px rgb(36 86 200 / .2), 0 18px 40px -20px rgb(31 63 154 / .35); }
+.dxl-field:focus-within { box-shadow: 0 0 0 3px rgb(36 86 200 / .22); }
+.dxl-meta svg { color: var(--ios-blue); }
+@media (hover: hover) and (pointer: fine) { .dxl-quick a:hover { background: #fff7d6; box-shadow: 0 0 0 1px #f2d670 inset; } }
+@media (max-width: 767px) {
+  .dxl-hero::before { display: none; }
+  .dxl-holo { -webkit-text-stroke-width: 5px; text-shadow: 0 3px 0 var(--dxl-navy); }
+}
+@media (forced-colors: active) { .dxl-holo { -webkit-text-stroke: 0; text-shadow: none; } }
+.dxl-submit { background: linear-gradient(180deg, #3a6ee0, var(--dxl-navy)); box-shadow: 0 1px 0 rgb(255 255 255 / .35) inset, 0 8px 18px -8px rgb(31 63 154 / .7); }
