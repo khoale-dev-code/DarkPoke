@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import type { CSSProperties } from 'react'
 import { ArrowUpRight, Landmark, Mail, MapPin, MessageCircle, PackageCheck, Phone, ShieldCheck, Truck, type LucideIcon } from 'lucide-react'
 import { ShopBrand } from '@/components/shop/brand'
 import { FooterMap } from '@/components/shop/footer-map'
@@ -10,13 +9,11 @@ import './footer-v14.css'
 interface FooterLink { href: string; label: string }
 interface Contact { key: string; icon: LucideIcon; label: string; value: string; href?: string; external?: boolean }
 
-// Bubbles above the liquid edge: x position, height as a share of the wave, diameter in px, float (animated) or attached.
-const BUBBLES: { x: string; y: number; s: number; float?: boolean; wide?: boolean }[] = [
-  { x: '7%', y: .5, s: 12 }, { x: '18%', y: 1.05, s: 8, float: true, wide: true }, { x: '28.5%', y: .66, s: 22 },
-  { x: '44%', y: 1.1, s: 9, float: true }, { x: '60.5%', y: .8, s: 24 }, { x: '71%', y: 1.15, s: 8, float: true, wide: true },
-  { x: '84.5%', y: .56, s: 16 }, { x: '93%', y: 1.05, s: 9, float: true },
-]
-const BACK_WAVE = 'M0 200 L0 42 C15 40 62 27 90 28 C118 29 143 47 170 48 C197 49 223 39 250 34 C277 28 302 13 330 16 C358 19 388 44 420 51 C452 58 487 64 520 60 C553 56 590 36 620 28 C650 20 672 8 700 10 C728 12 760 33 790 39 C820 46 848 48 880 51 C912 54 948 64 980 60 C1012 56 1042 36 1070 28 C1098 19 1123 7 1150 7 C1177 8 1202 29 1230 31 C1258 33 1285 18 1320 19 C1355 20 1420 34 1440 36 L1440 200Z'
+// V14.37: the front of the sea is a row of breaking waves in Japanese print style (repeating tile in footer-v14.css),
+// with foam claws above each lip; the two swells behind it give depth.
+// V14.36: three layered swells (back, middle, the sea itself), smooth curves generated from two summed sine waves.
+const BACK_WAVE = 'M0 135 L0 29.9 C10 27 20 25 30 24 C40 22 50 21 60 20 C70 20 80 19 90 19 C100 19 110 19 120 19 C130 19 140 19 150 19 C160 19 170 19 180 20 C190 20 200 20 210 21 C220 22 230 23 240 24 C250 26 260 28 270 30 C280 32 290 35 300 38 C310 41 320 44 330 47 C340 51 350 54 360 57 C370 60 380 63 390 65 C400 67 410 69 420 70 C430 71 440 71 450 70 C460 70 470 68 480 67 C490 65 500 62 510 60 C520 57 530 54 540 51 C550 48 560 45 570 43 C580 40 590 38 600 36 C610 34 620 32 630 31 C640 29 650 28 660 27 C670 25 680 25 690 24 C700 23 710 22 720 21 C730 20 740 19 750 18 C760 17 770 16 780 16 C790 16 800 16 810 16 C820 16 830 17 840 19 C850 20 860 22 870 25 C880 27 890 30 900 34 C910 37 920 41 930 44 C940 48 950 52 960 55 C970 58 980 61 990 63 C1000 66 1010 67 1020 68 C1030 69 1040 69 1050 69 C1060 68 1070 67 1080 66 C1090 64 1100 62 1110 60 C1120 59 1130 56 1140 54 C1150 52 1160 50 1170 48 C1180 46 1190 44 1200 43 C1210 41 1220 39 1230 38 C1240 36 1250 35 1260 33 C1270 31 1280 30 1290 28 C1300 26 1310 24 1320 22 C1330 21 1340 19 1350 17 C1360 16 1370 14 1380 13 C1390 12 1400 12 1410 12 C1420 12 1430 13 1440 14 L1440 135Z'
+const MID_WAVE = 'M0 135 L0 43.9 C10 45 20 46 30 48 C40 50 50 53 60 56 C70 60 80 64 90 69 C100 73 110 78 120 82 C130 86 140 90 150 93 C160 95 170 97 180 98 C190 99 200 99 210 98 C220 97 230 95 240 93 C250 91 260 89 270 86 C280 84 290 81 300 79 C310 77 320 74 330 72 C340 70 350 69 360 67 C370 64 380 62 390 60 C400 58 410 55 420 53 C430 50 440 47 450 45 C460 42 470 40 480 39 C490 37 500 36 510 37 C520 37 530 38 540 41 C550 43 560 46 570 50 C580 54 590 59 600 63 C610 67 620 72 630 75 C640 79 650 83 660 85 C670 88 680 89 690 90 C700 92 710 92 720 92 C730 92 740 92 750 92 C760 91 770 91 780 90 C790 90 800 89 810 88 C820 87 830 87 840 85 C850 84 860 82 870 79 C880 77 890 73 900 70 C910 66 920 62 930 58 C940 54 950 50 960 46 C970 43 980 40 990 38 C1000 36 1010 35 1020 35 C1030 35 1040 37 1050 39 C1060 41 1070 44 1080 47 C1090 50 1100 54 1110 57 C1120 60 1130 63 1140 66 C1150 69 1160 71 1170 73 C1180 75 1190 77 1200 79 C1210 81 1220 82 1230 84 C1240 85 1250 87 1260 89 C1270 90 1280 92 1290 94 C1300 95 1310 96 1320 96 C1330 97 1340 96 1350 95 C1360 94 1370 91 1380 88 C1390 85 1400 81 1410 77 C1420 73 1430 68 1440 64 L1440 135Z'
 
 // Google Maps embed and place link for the Dark Poke store.
 const MAP_EMBED = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.5902363333253!2d106.65774097480485!3d10.7660297893822!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f006fde92f7%3A0xa60cd23fa3b1dad6!2sDARK%20POKE%20-%20Pokemon%20Trading%20Card%20Store!5e0!3m2!1sen!2s!4v1793965907259!5m2!1sen!2s'
@@ -102,20 +99,23 @@ export function SiteFooter({ settings, categories }: { settings: ShopSettings; c
       </ul>
     </div>
     <div className="dpf-tide" aria-hidden="true">
-      <svg className="dpf-tide-back" viewBox="0 0 1440 90" preserveAspectRatio="none" focusable="false"><path d={BACK_WAVE} /></svg>
-      {BUBBLES.map((b, i) => <i key={i} data-float={b.float ? '' : undefined} data-wide={b.wide ? '' : undefined}
-        style={{ left: b.x, '--y': b.y, '--s': b.s, '--d': `${4 + (i % 4) * 1.3}s`, '--delay': `${-(i % 5) * .9}s` } as CSSProperties} />)}
+      <svg className="dpf-tide-back" viewBox="0 0 1440 135" preserveAspectRatio="none" focusable="false"><path d={BACK_WAVE} /></svg>
+      <svg className="dpf-tide-mid" viewBox="0 0 1440 135" preserveAspectRatio="none" focusable="false"><path d={MID_WAVE} /></svg>
+      <span className="dpf-tide-foam" />
     </div>
     </div>
 
     <div className="dpf-sea">
     <div className="shop-container dpf-main">
+      <div className="dpf-left">
       <nav className="dpf-links" aria-label="Liên kết chân trang">
         {sections.map((section, index) => <section key={section.title} aria-labelledby={`dpf-s${index}`}>
           <h3 id={`dpf-s${index}`}>{section.title}</h3>
           <ul>{section.links.map((link) => <li key={link.href}><Link prefetch={false} href={link.href}>{link.label}</Link></li>)}</ul>
         </section>)}
       </nav>
+      {contactList.length ? <ul className="dpf-contacts" aria-label="Liên hệ">{contactList.map((item) => <ContactRow key={item.key} item={item} />)}</ul> : null}
+      </div>
 
       <aside className="dpf-panel" aria-labelledby="dpf-contact-title">
         <div className="dpf-panel-head">
@@ -123,7 +123,6 @@ export function SiteFooter({ settings, categories }: { settings: ShopSettings; c
           <a className="dpf-directions" href={MAP_LINK} target="_blank" rel="noopener noreferrer">Chỉ đường<ArrowUpRight size={14} aria-hidden="true" /></a>
         </div>
         <FooterMap src={MAP_EMBED} title="Bản đồ cửa hàng Dark Poke - Pokemon Trading Card Store" />
-        {contactList.length ? <ul className="dpf-contacts">{contactList.map((item) => <ContactRow key={item.key} item={item} />)}</ul> : null}
       </aside>
     </div>
     </div>

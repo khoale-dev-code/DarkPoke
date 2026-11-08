@@ -1,10 +1,10 @@
 /* Dark Poke V14.18 footer (based on V14.14): deep teal band with a diamond pattern, a liquid edge with bubbles, then a cyan sea for links and contact. */
 .dpf {
   --dpf-wave: 92px;
-  --dpf-abyss: #011418; --dpf-deep-top: #01161b; --dpf-deep-bottom: #022c35;
-  --dpf-sea-top: #0da6bd; --dpf-sea-bottom: #11c2de; --dpf-glow: #4fdcf0;
-  --dpf-ink: #f2fbfd; --dpf-text: #b4d3d9; --dpf-muted: #78a3ad; --dpf-line: rgb(150 230 242 / .13);
-  --dpf-sea-ink: #011a20; --dpf-sea-text: #032b33; --dpf-sea-line: rgb(1 40 48 / .16);
+  --dpf-abyss: #050f24; --dpf-deep-top: #071733; --dpf-deep-bottom: #0d2a5a;
+  --dpf-sea-top: #2c63b4; --dpf-sea-bottom: #2457a5; --dpf-glow: #9cc4ff;
+  --dpf-ink: #f4f8ff; --dpf-text: #c3d3ee; --dpf-muted: #8ea6cf; --dpf-line: rgb(170 200 255 / .13);
+  --dpf-sea-ink: #ffffff; --dpf-sea-text: #e6eeff; --dpf-sea-line: rgb(255 255 255 / .16);
   margin-top: 72px; overflow-x: clip; color: var(--dpf-text); font-size: 15px; line-height: 1.6;
 }
 .dpf a { color: inherit; }
@@ -14,8 +14,8 @@
 .dpf-deep {
   position: relative; padding-bottom: calc(var(--dpf-wave) + 36px);
   background:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 44 44'%3E%3Cg fill='none' stroke='%233f8f9b' stroke-opacity='.11' stroke-width='2'%3E%3Cpath d='M22 1 43 22 22 43 1 22Z'/%3E%3Cpath d='M22 8.5 35.5 22 22 35.5 8.5 22Z'/%3E%3Cpath d='M22 16 28 22 22 28 16 22Z'/%3E%3C/g%3E%3C/svg%3E") center top / 44px 44px,
-    radial-gradient(120% 70% at 50% 115%, rgb(13 166 189 / .30), transparent 62%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 44 44'%3E%3Cg fill='none' stroke='%23305a9c' stroke-opacity='.11' stroke-width='2'%3E%3Cpath d='M22 1 43 22 22 43 1 22Z'/%3E%3Cpath d='M22 8.5 35.5 22 22 35.5 8.5 22Z'/%3E%3Cpath d='M22 16 28 22 22 28 16 22Z'/%3E%3C/g%3E%3C/svg%3E") center top / 44px 44px,
+    radial-gradient(120% 70% at 50% 115%, rgb(44 99 180 / .30), transparent 62%),
     linear-gradient(180deg, var(--dpf-deep-top), var(--dpf-deep-bottom));
 }
 .dpf-top { display: grid; grid-template-columns: minmax(260px, 340px) minmax(0, 1fr); gap: 28px 72px; align-items: center; padding-block: 52px 0; }
@@ -26,9 +26,9 @@
 .dpf-trust { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .dpf-trust li { display: flex; flex-direction: column; gap: 10px; padding: 4px 20px; border-left: 1px solid var(--dpf-line); }
 .dpf-trust li:first-child { padding-left: 0; border-left: 0; }
-.dpf-trust-icon { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; flex: none; border-radius: 11px; border: 1px solid rgb(79 220 240 / .32); background: rgb(79 220 240 / .12); color: var(--dpf-glow); }
+.dpf-trust-icon { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; flex: none; border-radius: 11px; border: 1px solid rgb(156 196 255 / .32); background: rgb(156 196 255 / .12); color: var(--dpf-glow); }
 .dpf-trust b { display: block; color: #fff; font-size: 14px; font-weight: 650; line-height: 1.35; }
-.dpf-trust small { display: block; margin-top: 3px; color: #a3c8cf; font-size: 12.5px; line-height: 1.45; }
+.dpf-trust small { display: block; margin-top: 3px; color: #a9bde3; font-size: 12.5px; line-height: 1.45; }
 
 /* Liquid edge: the sea's own top is cut by a wave mask, bubbles and a softer back wave sit in the deep band. */
 .dpf-tide { position: absolute; inset: auto 0 0; height: calc(var(--dpf-wave) * 2); overflow: hidden; pointer-events: none; }
@@ -45,8 +45,8 @@
   background:
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 44 44'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='.06' stroke-width='2'%3E%3Cpath d='M22 1 43 22 22 43 1 22Z'/%3E%3Cpath d='M22 8.5 35.5 22 22 35.5 8.5 22Z'/%3E%3Cpath d='M22 16 28 22 22 28 16 22Z'/%3E%3C/g%3E%3C/svg%3E") center top / 44px 44px,
     linear-gradient(180deg, var(--dpf-sea-top) 0, var(--dpf-sea-top) var(--dpf-wave), var(--dpf-sea-bottom));
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 90' preserveAspectRatio='none'%3E%3Cpath d='M0 200 L0 73 C12 69 47 58 70 52 C93 47 117 40 140 41 C163 42 188 52 210 58 C232 64 248 74 270 75 C292 77 317 74 340 67 C363 60 387 40 410 32 C433 24 457 16 480 17 C503 18 528 29 550 38 C572 46 587 63 610 70 C633 76 663 80 690 78 C717 77 745 70 770 61 C795 52 817 32 840 23 C863 15 887 8 910 9 C933 10 958 19 980 29 C1002 39 1018 59 1040 67 C1062 74 1087 78 1110 75 C1133 73 1157 60 1180 52 C1203 45 1227 33 1250 32 C1273 31 1297 38 1320 44 C1343 49 1370 63 1390 67 C1410 70 1432 64 1440 64 L1440 200Z'/%3E%3C/svg%3E") center top / max(100%, 1100px) calc(var(--dpf-wave) + 2px) no-repeat, linear-gradient(#000 0 0) 0 var(--dpf-wave) / 100% 100% no-repeat;
-  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 90' preserveAspectRatio='none'%3E%3Cpath d='M0 200 L0 73 C12 69 47 58 70 52 C93 47 117 40 140 41 C163 42 188 52 210 58 C232 64 248 74 270 75 C292 77 317 74 340 67 C363 60 387 40 410 32 C433 24 457 16 480 17 C503 18 528 29 550 38 C572 46 587 63 610 70 C633 76 663 80 690 78 C717 77 745 70 770 61 C795 52 817 32 840 23 C863 15 887 8 910 9 C933 10 958 19 980 29 C1002 39 1018 59 1040 67 C1062 74 1087 78 1110 75 C1133 73 1157 60 1180 52 C1203 45 1227 33 1250 32 C1273 31 1297 38 1320 44 C1343 49 1370 63 1390 67 C1410 70 1432 64 1440 64 L1440 200Z'/%3E%3C/svg%3E") center top / max(100%, 1100px) calc(var(--dpf-wave) + 2px) no-repeat, linear-gradient(#000 0 0) 0 var(--dpf-wave) / 100% 100% no-repeat;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100' preserveAspectRatio='none'%3E%3Cpath d='M0 100 L0 80.4 C10 80 20 80 30 79 C40 79 50 79 60 78 C70 77 80 76 90 75 C100 73 110 71 120 68 C130 65 140 62 150 58 C160 54 170 49 180 44 C190 40 200 35 210 30 C220 26 230 22 240 19 C250 16 260 14 270 13 C280 12 290 13 300 14 C310 15 320 18 330 21 C340 24 350 28 360 32 C370 36 380 40 390 43 C400 47 410 50 420 53 C430 56 440 58 450 60 C460 63 470 65 480 67 C490 69 500 71 510 73 C520 75 530 77 540 79 C550 81 560 83 570 84 C580 86 590 87 600 87 C610 87 620 86 630 84 C640 82 650 79 660 76 C670 72 680 67 690 62 C700 57 710 51 720 46 C730 41 740 36 750 32 C760 28 770 24 780 22 C790 20 800 19 810 18 C820 18 830 19 840 20 C850 20 860 22 870 24 C880 25 890 27 900 29 C910 31 920 33 930 34 C940 36 950 38 960 40 C970 42 980 45 990 47 C1000 50 1010 54 1020 57 C1030 61 1040 65 1050 69 C1060 73 1070 77 1080 81 C1090 84 1100 87 1110 89 C1120 91 1130 92 1140 92 C1150 91 1160 90 1170 87 C1180 85 1190 81 1200 77 C1210 73 1220 68 1230 63 C1240 59 1250 54 1260 50 C1270 46 1280 42 1290 39 C1300 36 1310 34 1320 32 C1330 30 1340 29 1350 28 C1360 27 1370 26 1380 26 C1390 25 1400 24 1410 24 C1420 23 1430 22 1440 22 L1440 100Z'/%3E%3C/svg%3E") center top / max(100%, 1100px) calc(var(--dpf-wave) + 2px) no-repeat, linear-gradient(#000 0 0) 0 var(--dpf-wave) / 100% 100% no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100' preserveAspectRatio='none'%3E%3Cpath d='M0 100 L0 80.4 C10 80 20 80 30 79 C40 79 50 79 60 78 C70 77 80 76 90 75 C100 73 110 71 120 68 C130 65 140 62 150 58 C160 54 170 49 180 44 C190 40 200 35 210 30 C220 26 230 22 240 19 C250 16 260 14 270 13 C280 12 290 13 300 14 C310 15 320 18 330 21 C340 24 350 28 360 32 C370 36 380 40 390 43 C400 47 410 50 420 53 C430 56 440 58 450 60 C460 63 470 65 480 67 C490 69 500 71 510 73 C520 75 530 77 540 79 C550 81 560 83 570 84 C580 86 590 87 600 87 C610 87 620 86 630 84 C640 82 650 79 660 76 C670 72 680 67 690 62 C700 57 710 51 720 46 C730 41 740 36 750 32 C760 28 770 24 780 22 C790 20 800 19 810 18 C820 18 830 19 840 20 C850 20 860 22 870 24 C880 25 890 27 900 29 C910 31 920 33 930 34 C940 36 950 38 960 40 C970 42 980 45 990 47 C1000 50 1010 54 1020 57 C1030 61 1040 65 1050 69 C1060 73 1070 77 1080 81 C1090 84 1100 87 1110 89 C1120 91 1130 92 1140 92 C1150 91 1160 90 1170 87 C1180 85 1190 81 1200 77 C1210 73 1220 68 1230 63 C1240 59 1250 54 1260 50 C1270 46 1280 42 1290 39 C1300 36 1310 34 1320 32 C1330 30 1340 29 1350 28 C1360 27 1370 26 1380 26 C1390 25 1400 24 1410 24 C1420 23 1430 22 1440 22 L1440 100Z'/%3E%3C/svg%3E") center top / max(100%, 1100px) calc(var(--dpf-wave) + 2px) no-repeat, linear-gradient(#000 0 0) 0 var(--dpf-wave) / 100% 100% no-repeat;
 }
 .dpf-main { display: grid; grid-template-columns: minmax(0, 1fr) minmax(340px, 430px); gap: 40px 72px; align-items: start; padding-block: 12px 64px; }
 .dpf-links { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
@@ -56,18 +56,18 @@
 .dpf-sea :is(a, button):focus-visible { outline-color: var(--dpf-sea-ink); }
 
 /* Store card: just the map with a heading and directions. */
-.dpf-panel { display: flex; flex-direction: column; gap: 12px; padding: 14px; border: 1px solid rgb(255 255 255 / .1); border-radius: 22px; color: var(--dpf-text); background: #022a33;
-  box-shadow: 0 24px 48px -28px rgb(1 32 38 / .7); }
+.dpf-panel { display: flex; flex-direction: column; gap: 12px; padding: 14px; border: 1px solid rgb(255 255 255 / .1); border-radius: 22px; color: var(--dpf-text); background: #0b2149;
+  box-shadow: 0 24px 48px -28px rgb(5 18 45 / .7); }
 .dpf-panel :is(a, button):focus-visible { outline-color: var(--dpf-glow); }
 .dpf-panel-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 2px 4px 0 6px; }
 .dpf-panel-head h3 { margin: 0; font-size: 15px; }
 .dpf-directions { display: inline-flex; align-items: center; gap: 4px; min-height: 34px; padding: 0 12px; border-radius: 999px; background: var(--dpf-glow); color: var(--dpf-sea-ink) !important; font-size: 13px; font-weight: 650; transition: filter 160ms ease; }
-.dpf-map { position: relative; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 14px; background: #0b3a44; }
+.dpf-map { position: relative; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 14px; background: #13306a; }
 .dpf-map iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 .dpf-map-wait { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: 8px; color: var(--dpf-text); font-size: 14px; }
 .dpf-contacts { display: flex; flex-direction: column; padding-inline: 6px; }
 .dpf-contact { display: flex; align-items: center; gap: 12px; min-height: 48px; padding-block: 6px; border-radius: 12px; }
-.dpf-contact-icon { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; flex: none; border-radius: 10px; background: rgb(79 220 240 / .14); color: var(--dpf-glow); }
+.dpf-contact-icon { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; flex: none; border-radius: 10px; background: rgb(156 196 255 / .14); color: var(--dpf-glow); }
 .dpf-contact-text { display: flex; flex-direction: column; min-width: 0; }
 .dpf-contact-text small { color: var(--dpf-muted); font-size: 12px; line-height: 1.4; }
 .dpf-contact-text span { color: var(--dpf-ink); font-size: 14.5px; font-weight: 550; line-height: 1.5; overflow-wrap: anywhere; }
@@ -127,3 +127,97 @@
   .dpf-contact-icon, .dpf-trust-icon { border: 1px solid CanvasText; }
 }
 @media print { .dpf { display: none !important; } }
+
+/* V14.34: white RolPoké logo on the dark footer. */
+.dpf .shop-brand img { background: none; padding: 0; border-radius: 0; }
+.dpf .shop-brand .shop-logo-light { display: none; }
+.dpf .shop-brand .shop-logo-dark { display: block; }
+
+
+/* V14.36 footer: three layered swells like rolling sea (back, middle, front), and a shorter lower section:
+   contacts sit under the link columns, the map card stretches to the same height, so nothing is left empty. */
+.dpf { --dpf-wave: 110px; }
+.dpf-deep { padding-bottom: calc(var(--dpf-wave) + 24px); }
+.dpf-tide { height: calc(var(--dpf-wave) * 1.35); }
+.dpf-tide-back, .dpf-tide-mid { position: absolute; bottom: 0; left: 50%; width: max(100%, 1100px); height: calc(var(--dpf-wave) * 1.35); transform: translateX(-50%); }
+.dpf-tide-back { fill: #12306a; opacity: 1; }
+.dpf-tide-mid { fill: #1a4189; }
+.dpf-main { align-items: stretch; padding-block: 8px 48px; }
+.dpf-left { display: flex; min-width: 0; flex-direction: column; gap: 28px; }
+.dpf-left .dpf-contacts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; padding: 0; }
+.dpf-left .dpf-contacts li { min-width: 0; }
+.dpf-left .dpf-contact { height: 100%; padding: 10px 14px; border-radius: 16px; background: rgb(11 33 73 / .9); box-shadow: 0 14px 30px -22px rgb(5 18 45 / .8); }
+.dpf-left .dpf-contact-text span { font-size: 14px; }
+.dpf-panel .dpf-map { flex: 1; min-height: 240px; aspect-ratio: auto; }
+@media (max-width: 1099px) { .dpf-panel .dpf-map { flex: none; aspect-ratio: 21 / 9; min-height: 0; } }
+@media (max-width: 899px) { .dpf { --dpf-wave: 80px; } }
+@media (max-width: 767px) {
+  .dpf { --dpf-wave: 60px; }
+  .dpf-deep { padding-bottom: calc(var(--dpf-wave) + 20px); }
+  .dpf-left { gap: 24px; }
+  .dpf-left .dpf-contacts { gap: 8px; }
+  .dpf-left .dpf-contacts li:nth-child(n+3) { grid-column: 1 / -1; }
+  .dpf-left .dpf-contact { padding: 8px 12px; gap: 10px; }
+  .dpf-panel .dpf-map { aspect-ratio: 16 / 10; }
+}
+
+
+/* V14.37 Japanese wave style: seigaiha (overlapping concentric arcs) instead of diamonds, and a front edge of breaking waves
+   with white ink lines and foam claws (one 240 x 110 tile repeated, scaled with the wave height). Patterns are blended with "screen" so only the rings lighten the gradients. */
+.dpf-deep {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='20' viewBox='0 0 40 20'%3E%3Crect width='40' height='20' fill='%23000'/%3E%3Cpath d='M-20 10 A20 20 0 0 1 20 10Z' fill='%23000'/%3E%3Cpath d='M-18 10 A18 18 0 0 1 18 10' fill='none' stroke='%23163469' stroke-width='1.2'/%3E%3Cpath d='M-13.5 10 A13.5 13.5 0 0 1 13.5 10' fill='none' stroke='%23163469' stroke-width='1.2'/%3E%3Cpath d='M-9 10 A9 9 0 0 1 9 10' fill='none' stroke='%23163469' stroke-width='1.2'/%3E%3Cpath d='M-4.5 10 A4.5 4.5 0 0 1 4.5 10' fill='none' stroke='%23163469' stroke-width='1.2'/%3E%3Cpath d='M20 10 A20 20 0 0 1 60 10Z' fill='%23000'/%3E%3Cpath d='M22 10 A18 18 0 0 1 58 10' fill='none' stroke='%23163469' stroke-width='1.2'/%3E%3Cpath d='M26.5 10 A13.5 13.5 0 0 1 53.5 10' fill='none' stroke='%23163469' stroke-width='1.2'/%3E%3Cpath d='M31 10 A9 9 0 0 1 49 10' fill='none' stroke='%23163469' stroke-width='1.2'/%3E%3Cpath d='M35.5 10 A4.5 4.5 0 0 1 44.5 10' fill='none' stroke='%23163469' stroke-width='1.2'/%3E%3Cpath d='M0 20 A20 20 0 0 1 40 20Z' fill='%23000'/%3E%3Cpath d='M2 20 A18 18 0 0 1 38 20' fill='none' stroke='%23163469' stroke-width='1.2'/%3E%3Cpath d='M6.5 20 A13.5 13.5 0 0 1 33.5 20' fill='none' stroke='%23163469' stroke-width='1.2'/%3E%3Cpath d='M11 20 A9 9 0 0 1 29 20' fill='none' stroke='%23163469' stroke-width='1.2'/%3E%3Cpath d='M15.5 20 A4.5 4.5 0 0 1 24.5 20' fill='none' stroke='%23163469' stroke-width='1.2'/%3E%3Cpath d='M-20 30 A20 20 0 0 1 20 30Z' fill='%23000'/%3E%3Cpath d='M-18 30 A18 18 0 0 1 18 30' fill='none' stroke='%23163469' stroke-width='1.2'/%3E%3Cpath d='M-13.5 30 A13.5 13.5 0 0 1 13.5 30' fill='none' stroke='%23163469' stroke-width='1.2'/%3E%3Cpath d='M-9 30 A9 9 0 0 1 9 30' fill='none' stroke='%23163469' stroke-width='1.2'/%3E%3Cpath d='M-4.5 30 A4.5 4.5 0 0 1 4.5 30' fill='none' stroke='%23163469' stroke-width='1.2'/%3E%3Cpath d='M20 30 A20 20 0 0 1 60 30Z' fill='%23000'/%3E%3Cpath d='M22 30 A18 18 0 0 1 58 30' fill='none' stroke='%23163469' stroke-width='1.2'/%3E%3Cpath d='M26.5 30 A13.5 13.5 0 0 1 53.5 30' fill='none' stroke='%23163469' stroke-width='1.2'/%3E%3Cpath d='M31 30 A9 9 0 0 1 49 30' fill='none' stroke='%23163469' stroke-width='1.2'/%3E%3Cpath d='M35.5 30 A4.5 4.5 0 0 1 44.5 30' fill='none' stroke='%23163469' stroke-width='1.2'/%3E%3C/svg%3E"), radial-gradient(120% 70% at 50% 115%, rgb(44 99 180 / .30), transparent 62%), linear-gradient(180deg, var(--dpf-deep-top), var(--dpf-deep-bottom));
+  background-size: 40px 20px, auto, auto; background-position: center top; background-blend-mode: screen, normal, normal;
+}
+.dpf-sea {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='20' viewBox='0 0 40 20'%3E%3Crect width='40' height='20' fill='%23000'/%3E%3Cpath d='M-20 10 A20 20 0 0 1 20 10Z' fill='%23000'/%3E%3Cpath d='M-18 10 A18 18 0 0 1 18 10' fill='none' stroke='%23122c5e' stroke-width='1.2'/%3E%3Cpath d='M-13.5 10 A13.5 13.5 0 0 1 13.5 10' fill='none' stroke='%231d4686' stroke-width='1.2'/%3E%3Cpath d='M-9 10 A9 9 0 0 1 9 10' fill='none' stroke='%231d4686' stroke-width='1.2'/%3E%3Cpath d='M-4.5 10 A4.5 4.5 0 0 1 4.5 10' fill='none' stroke='%231d4686' stroke-width='1.2'/%3E%3Cpath d='M20 10 A20 20 0 0 1 60 10Z' fill='%23000'/%3E%3Cpath d='M22 10 A18 18 0 0 1 58 10' fill='none' stroke='%231d4686' stroke-width='1.2'/%3E%3Cpath d='M26.5 10 A13.5 13.5 0 0 1 53.5 10' fill='none' stroke='%231d4686' stroke-width='1.2'/%3E%3Cpath d='M31 10 A9 9 0 0 1 49 10' fill='none' stroke='%231d4686' stroke-width='1.2'/%3E%3Cpath d='M35.5 10 A4.5 4.5 0 0 1 44.5 10' fill='none' stroke='%231d4686' stroke-width='1.2'/%3E%3Cpath d='M0 20 A20 20 0 0 1 40 20Z' fill='%23000'/%3E%3Cpath d='M2 20 A18 18 0 0 1 38 20' fill='none' stroke='%231d4686' stroke-width='1.2'/%3E%3Cpath d='M6.5 20 A13.5 13.5 0 0 1 33.5 20' fill='none' stroke='%231d4686' stroke-width='1.2'/%3E%3Cpath d='M11 20 A9 9 0 0 1 29 20' fill='none' stroke='%231d4686' stroke-width='1.2'/%3E%3Cpath d='M15.5 20 A4.5 4.5 0 0 1 24.5 20' fill='none' stroke='%231d4686' stroke-width='1.2'/%3E%3Cpath d='M-20 30 A20 20 0 0 1 20 30Z' fill='%23000'/%3E%3Cpath d='M-18 30 A18 18 0 0 1 18 30' fill='none' stroke='%231d4686' stroke-width='1.2'/%3E%3Cpath d='M-13.5 30 A13.5 13.5 0 0 1 13.5 30' fill='none' stroke='%231d4686' stroke-width='1.2'/%3E%3Cpath d='M-9 30 A9 9 0 0 1 9 30' fill='none' stroke='%231d4686' stroke-width='1.2'/%3E%3Cpath d='M-4.5 30 A4.5 4.5 0 0 1 4.5 30' fill='none' stroke='%231d4686' stroke-width='1.2'/%3E%3Cpath d='M20 30 A20 20 0 0 1 60 30Z' fill='%23000'/%3E%3Cpath d='M22 30 A18 18 0 0 1 58 30' fill='none' stroke='%231d4686' stroke-width='1.2'/%3E%3Cpath d='M26.5 30 A13.5 13.5 0 0 1 53.5 30' fill='none' stroke='%231d4686' stroke-width='1.2'/%3E%3Cpath d='M31 30 A9 9 0 0 1 49 30' fill='none' stroke='%231d4686' stroke-width='1.2'/%3E%3Cpath d='M35.5 30 A4.5 4.5 0 0 1 44.5 30' fill='none' stroke='%231d4686' stroke-width='1.2'/%3E%3C/svg%3E"), linear-gradient(180deg, var(--dpf-sea-top) 0, var(--dpf-sea-top) var(--dpf-wave), var(--dpf-sea-bottom));
+  background-size: 40px 20px, auto; background-position: center top; background-blend-mode: screen, normal;
+}
+.dpf-main { position: relative; z-index: 1; }
+
+/* Contacts: one quiet panel with hairline dividers, matching the map card. */
+.dpf-left .dpf-contacts { gap: 0; padding: 6px; border: 1px solid rgb(255 255 255 / .1); border-radius: 22px; background: #0b2149; box-shadow: 0 24px 48px -28px rgb(5 18 45 / .7); }
+.dpf-left .dpf-contacts li { position: relative; }
+.dpf-left .dpf-contacts li:nth-child(even)::before { content: ''; position: absolute; left: 0; top: 14px; bottom: 14px; width: 1px; background: rgb(170 200 255 / .12); }
+.dpf-left .dpf-contacts li:nth-child(n+3)::after { content: ''; position: absolute; left: 14px; right: 14px; top: 0; height: 1px; background: rgb(170 200 255 / .12); }
+.dpf-left .dpf-contact { padding: 12px 14px; border-radius: 16px; background: none; box-shadow: none; }
+.dpf-left .dpf-contact-icon { border-radius: 50%; border: 1px solid rgb(156 196 255 / .35); background: rgb(156 196 255 / .08); }
+@media (hover: hover) and (pointer: fine) { .dpf-left a.dpf-contact:hover { background: rgb(156 196 255 / .07); } }
+@media (max-width: 767px) {
+  .dpf-tide-foam { display: block; }
+  .dpf-left .dpf-contacts li::before, .dpf-left .dpf-contacts li::after { display: none; }
+  .dpf-left .dpf-contacts li:nth-child(n+3) { border-top: 1px solid rgb(170 200 255 / .12); }
+  .dpf-left .dpf-contacts li:nth-child(2) { border-left: 1px solid rgb(170 200 255 / .12); }
+}
+
+.dpf-tide i { display: none; }
+.dpf-tide-back path, .dpf-tide-mid path { stroke: rgb(255 255 255 / .28); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+.dpf-tide-back path { stroke: rgb(255 255 255 / .16); }
+
+/* V14.38: ocean-blue palette (navy sky, royal-blue sea, white foam) and a larger breaking wave in woodblock-print style:
+   foam band with claws riding each crest, dark and light streaks in the face. One 300 x 130 tile, repeated. */
+.dpf { --dpf-wave: 130px; }
+.dpf-sea {
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='130' viewBox='0 0 300 130'%3E%3Cpath d='M0 130 L0 112 C40 111 84 104 118 84 C146 67 164 40 188 26 C210 13 240 12 258 26 C272 37 274 56 262 66 C252 74 236 72 232 60 C229 51 236 44 244 46 C250 48 251 55 247 58 C256 57 258 46 252 40 C243 32 226 36 218 50 C208 68 214 92 240 104 C258 112 280 113 300 112 L300 130 Z' fill='%23000'/%3E%3C/svg%3E") 0 0 / calc(var(--dpf-wave) * 2.3077) var(--dpf-wave) repeat-x, linear-gradient(#000 0 0) 0 calc(var(--dpf-wave) - 1px) / 100% 100% no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='130' viewBox='0 0 300 130'%3E%3Cpath d='M0 130 L0 112 C40 111 84 104 118 84 C146 67 164 40 188 26 C210 13 240 12 258 26 C272 37 274 56 262 66 C252 74 236 72 232 60 C229 51 236 44 244 46 C250 48 251 55 247 58 C256 57 258 46 252 40 C243 32 226 36 218 50 C208 68 214 92 240 104 C258 112 280 113 300 112 L300 130 Z' fill='%23000'/%3E%3C/svg%3E") 0 0 / calc(var(--dpf-wave) * 2.3077) var(--dpf-wave) repeat-x, linear-gradient(#000 0 0) 0 calc(var(--dpf-wave) - 1px) / 100% 100% no-repeat;
+}
+.dpf-sea::before { content: ''; position: absolute; inset: 0 0 auto; height: var(--dpf-wave); pointer-events: none; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='130' viewBox='0 0 300 130'%3E%3Cpath d='M24 120 C62 118 100 110 130 92 C156 76 170 56 190 44' fill='none' stroke='%231b3f80' stroke-opacity='.8' stroke-width='5' stroke-linecap='round'/%3E%3Cpath d='M206 66 C202 82 210 96 228 106' fill='none' stroke='%231b3f80' stroke-opacity='.8' stroke-width='5' stroke-linecap='round'/%3E%3Cpath d='M0 112 C40 111 84 104 118 84 C146 67 164 40 188 26 C210 13 240 12 258 26 C272 37 274 56 262 66' fill='none' stroke='%23dce9ff' stroke-width='2.5' stroke-linecap='round'/%3E%3Cpath d='M14 116 C52 114 92 106 124 88 C150 72 168 48 190 35' fill='none' stroke='%23a9c8ec' stroke-opacity='.75' stroke-width='2' stroke-linecap='round'/%3E%3Cpath d='M40 122 C76 120 108 112 134 96 C156 82 172 62 192 50' fill='none' stroke='%23a9c8ec' stroke-opacity='.75' stroke-width='2' stroke-linecap='round'/%3E%3Cpath d='M70 127 C100 125 126 118 146 106 C164 95 178 80 196 70' fill='none' stroke='%23a9c8ec' stroke-opacity='.75' stroke-width='2' stroke-linecap='round'/%3E%3Cpath d='M196 72 C190 86 196 100 214 110' fill='none' stroke='%23a9c8ec' stroke-opacity='.75' stroke-width='2' stroke-linecap='round'/%3E%3Cpath d='M258 26 C270 38 270 54 260 60' fill='none' stroke='%23a9c8ec' stroke-opacity='.75' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") 0 0 / calc(var(--dpf-wave) * 2.3077) var(--dpf-wave) repeat-x; }
+.dpf-tide-foam { position: absolute; inset: auto 0 0; z-index: 2; height: var(--dpf-wave); background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='130' viewBox='0 0 300 130'%3E%3Cpath d='M128 76 C146 64 164 40 188 26 C210 13 240 12 258 26 C272 37 274 56 262 66 C258 60 256 56 258 50 Q250 52 252 42 Q244 44 244 34 Q236 38 232 28 Q224 34 218 26 Q212 34 204 30 Q200 38 192 36 Q190 44 182 44 Q180 52 172 52 Q170 60 162 60 Q160 68 152 68 Q148 74 140 74 Q136 78 128 76 Z' fill='%23fff'/%3E%3Cpath d='M256 24 c6.0 -9.0 17.0 -9.0 21.0 -1.0 c-5.0 -3.0 -10.0 -2.0 -11.0 3.0 c3.0 -1.0 6.0 0 7.0 3.0 c-6.0 0 -11.0 3.0 -13.0 7.0 Z' fill='%23fff'/%3E%3Cpath d='M266 36 c6.0 -9.0 17.0 -9.0 21.0 -1.0 c-5.0 -3.0 -10.0 -2.0 -11.0 3.0 c3.0 -1.0 6.0 0 7.0 3.0 c-6.0 0 -11.0 3.0 -13.0 7.0 Z' fill='%23fff'/%3E%3Cpath d='M270 50 c5.4 -8.1 15.3 -8.1 18.900000000000002 -0.9 c-4.5 -2.7 -9.0 -1.8 -9.9 2.7 c2.7 -0.9 5.4 0 6.3 2.7 c-5.4 0 -9.9 2.7 -11.700000000000001 6.3 Z' fill='%23fff'/%3E%3Cpath d='M262 62 c4.800000000000001 -7.2 13.600000000000001 -7.2 16.8 -0.8 c-4.0 -2.4000000000000004 -8.0 -1.6 -8.8 2.4000000000000004 c2.4000000000000004 -0.8 4.800000000000001 0 5.6000000000000005 2.4000000000000004 c-4.800000000000001 0 -8.8 2.4000000000000004 -10.4 5.6000000000000005 Z' fill='%23fff'/%3E%3Cpath d='M234 14 c4.800000000000001 -7.2 13.600000000000001 -7.2 16.8 -0.8 c-4.0 -2.4000000000000004 -8.0 -1.6 -8.8 2.4000000000000004 c2.4000000000000004 -0.8 4.800000000000001 0 5.6000000000000005 2.4000000000000004 c-4.800000000000001 0 -8.8 2.4000000000000004 -10.4 5.6000000000000005 Z' fill='%23fff'/%3E%3Cpath d='M208 16 c4.199999999999999 -6.3 11.899999999999999 -6.3 14.7 -0.7 c-3.5 -2.0999999999999996 -7.0 -1.4 -7.699999999999999 2.0999999999999996 c2.0999999999999996 -0.7 4.199999999999999 0 4.8999999999999995 2.0999999999999996 c-4.199999999999999 0 -7.699999999999999 2.0999999999999996 -9.1 4.8999999999999995 Z' fill='%23fff'/%3E%3Cpath d='M182 26 c4.199999999999999 -6.3 11.899999999999999 -6.3 14.7 -0.7 c-3.5 -2.0999999999999996 -7.0 -1.4 -7.699999999999999 2.0999999999999996 c2.0999999999999996 -0.7 4.199999999999999 0 4.8999999999999995 2.0999999999999996 c-4.199999999999999 0 -7.699999999999999 2.0999999999999996 -9.1 4.8999999999999995 Z' fill='%23fff'/%3E%3Cpath d='M160 42 c3.5999999999999996 -5.3999999999999995 10.2 -5.3999999999999995 12.6 -0.6 c-3.0 -1.7999999999999998 -6.0 -1.2 -6.6 1.7999999999999998 c1.7999999999999998 -0.6 3.5999999999999996 0 4.2 1.7999999999999998 c-3.5999999999999996 0 -6.6 1.7999999999999998 -7.8 4.2 Z' fill='%23fff'/%3E%3Ccircle cx='214' cy='20' r='2.4' fill='%238fb4e6'/%3E%3Ccircle cx='232' cy='19' r='2.8' fill='%238fb4e6'/%3E%3Ccircle cx='248' cy='24' r='2.2' fill='%238fb4e6'/%3E%3Ccircle cx='198' cy='26' r='2.2' fill='%238fb4e6'/%3E%3Ccircle cx='178' cy='38' r='1.8' fill='%238fb4e6'/%3E%3Ccircle cx='160' cy='52' r='1.6' fill='%238fb4e6'/%3E%3Ccircle cx='262' cy='40' r='2' fill='%238fb4e6'/%3E%3Ccircle cx='144' cy='64' r='1.4' fill='%238fb4e6'/%3E%3Ccircle cx='170' cy='14' r='2.6' fill='%23fff'/%3E%3Ccircle cx='150' cy='24' r='1.8' fill='%23fff'/%3E%3Ccircle cx='296' cy='20' r='1.6' fill='%23fff'/%3E%3Ccircle cx='298' cy='72' r='2.2' fill='%23fff'/%3E%3Ccircle cx='284' cy='80' r='1.5' fill='%23fff'/%3E%3Ccircle cx='140' cy='40' r='1.4' fill='%23fff'/%3E%3Cpath d='M128 76 C146 64 164 40 188 26 C210 13 240 12 258 26 C272 37 274 56 262 66 C258 60 256 56 258 50 Q250 52 252 42 Q244 44 244 34 Q236 38 232 28 Q224 34 218 26 Q212 34 204 30 Q200 38 192 36 Q190 44 182 44 Q180 52 172 52 Q170 60 162 60 Q160 68 152 68 Q148 74 140 74 Q136 78 128 76 Z' fill='none' stroke='%231d4f9a' stroke-width='1.4' stroke-linejoin='round'/%3E%3Cpath d='M256 24 c6.0 -9.0 17.0 -9.0 21.0 -1.0 c-5.0 -3.0 -10.0 -2.0 -11.0 3.0 c3.0 -1.0 6.0 0 7.0 3.0 c-6.0 0 -11.0 3.0 -13.0 7.0 Z' fill='none' stroke='%231d4f9a' stroke-width='1.2'/%3E%3Cpath d='M266 36 c6.0 -9.0 17.0 -9.0 21.0 -1.0 c-5.0 -3.0 -10.0 -2.0 -11.0 3.0 c3.0 -1.0 6.0 0 7.0 3.0 c-6.0 0 -11.0 3.0 -13.0 7.0 Z' fill='none' stroke='%231d4f9a' stroke-width='1.2'/%3E%3Cpath d='M270 50 c5.4 -8.1 15.3 -8.1 18.900000000000002 -0.9 c-4.5 -2.7 -9.0 -1.8 -9.9 2.7 c2.7 -0.9 5.4 0 6.3 2.7 c-5.4 0 -9.9 2.7 -11.700000000000001 6.3 Z' fill='none' stroke='%231d4f9a' stroke-width='1.2'/%3E%3Cpath d='M262 62 c4.800000000000001 -7.2 13.600000000000001 -7.2 16.8 -0.8 c-4.0 -2.4000000000000004 -8.0 -1.6 -8.8 2.4000000000000004 c2.4000000000000004 -0.8 4.800000000000001 0 5.6000000000000005 2.4000000000000004 c-4.800000000000001 0 -8.8 2.4000000000000004 -10.4 5.6000000000000005 Z' fill='none' stroke='%231d4f9a' stroke-width='1.2'/%3E%3Cpath d='M234 14 c4.800000000000001 -7.2 13.600000000000001 -7.2 16.8 -0.8 c-4.0 -2.4000000000000004 -8.0 -1.6 -8.8 2.4000000000000004 c2.4000000000000004 -0.8 4.800000000000001 0 5.6000000000000005 2.4000000000000004 c-4.800000000000001 0 -8.8 2.4000000000000004 -10.4 5.6000000000000005 Z' fill='none' stroke='%231d4f9a' stroke-width='1.2'/%3E%3Cpath d='M208 16 c4.199999999999999 -6.3 11.899999999999999 -6.3 14.7 -0.7 c-3.5 -2.0999999999999996 -7.0 -1.4 -7.699999999999999 2.0999999999999996 c2.0999999999999996 -0.7 4.199999999999999 0 4.8999999999999995 2.0999999999999996 c-4.199999999999999 0 -7.699999999999999 2.0999999999999996 -9.1 4.8999999999999995 Z' fill='none' stroke='%231d4f9a' stroke-width='1.2'/%3E%3Cpath d='M182 26 c4.199999999999999 -6.3 11.899999999999999 -6.3 14.7 -0.7 c-3.5 -2.0999999999999996 -7.0 -1.4 -7.699999999999999 2.0999999999999996 c2.0999999999999996 -0.7 4.199999999999999 0 4.8999999999999995 2.0999999999999996 c-4.199999999999999 0 -7.699999999999999 2.0999999999999996 -9.1 4.8999999999999995 Z' fill='none' stroke='%231d4f9a' stroke-width='1.2'/%3E%3Cpath d='M160 42 c3.5999999999999996 -5.3999999999999995 10.2 -5.3999999999999995 12.6 -0.6 c-3.0 -1.7999999999999998 -6.0 -1.2 -6.6 1.7999999999999998 c1.7999999999999998 -0.6 3.5999999999999996 0 4.2 1.7999999999999998 c-3.5999999999999996 0 -6.6 1.7999999999999998 -7.8 4.2 Z' fill='none' stroke='%231d4f9a' stroke-width='1.2'/%3E%3C/svg%3E") 0 0 / calc(var(--dpf-wave) * 2.3077) var(--dpf-wave) repeat-x; }
+.dpf-directions { background: #ffffff; color: #0b2149 !important; }
+.dpf-links a { color: #e6eeff; }
+@media (max-width: 899px) { .dpf { --dpf-wave: 96px; } }
+@media (max-width: 767px) { .dpf { --dpf-wave: 72px; } }
+
+/* V14.39: the edge is the supplied great-wave illustration (public/brand/footer-wave.webp: the picture and its mirror side by side,
+   sky made transparent), repeated across the width. Its bottom blue continues straight into the sea, so the sea no longer needs a mask. */
+.dpf { --dpf-gw: 240px; --dpf-gw-blend: 36px; }
+.dpf-deep { padding-bottom: calc(var(--dpf-gw) - var(--dpf-gw-blend) + 4px); }
+.dpf-deep::after { content: ''; position: absolute; inset: auto 0 calc(var(--dpf-gw-blend) * -1); z-index: 2; height: var(--dpf-gw); pointer-events: none;
+  background: url('/brand/footer-wave.webp') center bottom / auto 100% repeat-x;
+  -webkit-mask: linear-gradient(180deg, #000 calc(100% - var(--dpf-gw-blend)), transparent); mask: linear-gradient(180deg, #000 calc(100% - var(--dpf-gw-blend)), transparent); }
+.dpf-tide { display: none; }
+.dpf-sea { margin-top: 0; padding-top: calc(var(--dpf-gw-blend) + 24px); -webkit-mask: none; mask: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='20' viewBox='0 0 40 20'%3E%3Crect width='40' height='20' fill='%23000'/%3E%3Cpath d='M-20 10 A20 20 0 0 1 20 10Z' fill='%23000'/%3E%3Cpath d='M-18 10 A18 18 0 0 1 18 10' fill='none' stroke='%230e2a55' stroke-width='1.2'/%3E%3Cpath d='M-13.5 10 A13.5 13.5 0 0 1 13.5 10' fill='none' stroke='%230e2a55' stroke-width='1.2'/%3E%3Cpath d='M-9 10 A9 9 0 0 1 9 10' fill='none' stroke='%230e2a55' stroke-width='1.2'/%3E%3Cpath d='M20 10 A20 20 0 0 1 60 10Z' fill='%23000'/%3E%3Cpath d='M22 10 A18 18 0 0 1 58 10' fill='none' stroke='%230e2a55' stroke-width='1.2'/%3E%3Cpath d='M26.5 10 A13.5 13.5 0 0 1 53.5 10' fill='none' stroke='%230e2a55' stroke-width='1.2'/%3E%3Cpath d='M31 10 A9 9 0 0 1 49 10' fill='none' stroke='%230e2a55' stroke-width='1.2'/%3E%3Cpath d='M0 20 A20 20 0 0 1 40 20Z' fill='%23000'/%3E%3Cpath d='M2 20 A18 18 0 0 1 38 20' fill='none' stroke='%230e2a55' stroke-width='1.2'/%3E%3Cpath d='M6.5 20 A13.5 13.5 0 0 1 33.5 20' fill='none' stroke='%230e2a55' stroke-width='1.2'/%3E%3Cpath d='M11 20 A9 9 0 0 1 29 20' fill='none' stroke='%230e2a55' stroke-width='1.2'/%3E%3C/svg%3E"), linear-gradient(180deg, #144e8a 0%, #13467d 55%, #113c6d 100%);
+  background-size: 40px 20px, auto; background-position: center top; background-blend-mode: screen, normal; }
+.dpf-sea::before { display: none; }
+@media (max-width: 1099px) { .dpf { --dpf-gw: 200px; } }
+@media (max-width: 767px) { .dpf { --dpf-gw: 132px; --dpf-gw-blend: 22px; } .dpf-sea { padding-top: calc(var(--dpf-gw-blend) + 18px); } }

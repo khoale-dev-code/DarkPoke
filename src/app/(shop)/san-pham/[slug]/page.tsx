@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     title: p.seo_title ?? p.name,
     description: p.seo_description ?? p.description.slice(0, 160),
     alternates: { canonical: `/san-pham/${p.slug}` },
-    openGraph: { images: p.thumbnail && !p.thumbnail.endsWith('.svg') ? [p.thumbnail] : ['/logo-full.png'] }
+    openGraph: { images: p.thumbnail && !p.thumbnail.endsWith('.svg') ? [p.thumbnail] : ['/brand/og.png'] }
   }
 }
 

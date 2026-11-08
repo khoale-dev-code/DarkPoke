@@ -16,8 +16,8 @@ export const metadata: Metadata = {
   title: { default: 'Dark Poke · Thẻ bài TCG chính hãng', template: '%s · Dark Poke' },
   description: 'Dark Poke: săn thẻ, trao đổi, sưu tầm. Booster box, thẻ lẻ, thẻ grading Pokémon TCG, One Piece TCG, Riftbound. Pre-order có đặt cọc, thu mua thẻ.',
   applicationName: 'Dark Poke',
-  icons: { icon: '/icons/icon-192.png', apple: '/apple-touch-icon.png' },
-  openGraph: { type: 'website', siteName: 'Dark Poke', locale: 'vi_VN', images: ['/logo-full.png'] }
+  icons: { icon: '/brand/icon-192.png', apple: '/brand/apple-touch-icon.png' },
+  openGraph: { type: 'website', siteName: 'Dark Poke', locale: 'vi_VN', images: ['/brand/og.png'] }
 }
 
 export const viewport: Viewport = {

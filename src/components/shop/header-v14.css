@@ -87,3 +87,10 @@ html[data-scrolling] .shop-ui main { pointer-events: none; }
 @media (prefers-reduced-motion: reduce) { .dph-header, .dph-header *, .dph-header::before { transition: none !important; } }
 @media (forced-colors: active) { .dph-header::before { background: Canvas; } .dph-header { color: CanvasText; } .dph-badge { border: 1px solid CanvasText; } }
 @media print { .dph-header { display: none !important; } }
+
+/* V14.34 RolPoké logo: blue on light surfaces, white over the hero and in the footer. */
+.shop-brand .shop-logo-dark { display: none; }
+.dph-header .shop-brand img { height: 34px; max-width: 150px; }
+.dph-header[data-tone=overlay] .shop-brand .shop-logo-light { display: none; }
+.dph-header[data-tone=overlay] .shop-brand .shop-logo-dark { display: block; }
+@media (max-width: 767px) { .dph-header .shop-brand img { height: 30px; } }

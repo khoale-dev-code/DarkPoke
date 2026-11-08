@@ -1,16 +1,16 @@
-# Dark Poke — Header, Trang chủ, Footer, Tìm kiếm & Thư viện thẻ V14.33
+# Dark Poke — Header, Trang chủ, Footer, Tìm kiếm & Thư viện thẻ V14.38
 
 Bản vá thay header và trang chủ. Thanh tiện ích trên cùng ("HUNT · TRADE · COLLECT / Giao hàng toàn quốc…") được bỏ hẳn. Header mới gọn một hàng, trong suốt khi nằm trên ảnh hero của trang chủ và chuyển sang nền kính mờ khi cuộn. Hai banner mới (30th Celebration ETB, Perfect Order ETB) đã được tối ưu thành WebP và đóng gói ngay trong file PowerShell.
 
 ## Chạy trên Windows PowerShell
 
-Tải `Dark-Poke-Header-Home-V14-33.ps1` vào `C:\Users\Bin77\Downloads`. Dừng server bằng Ctrl+C trước khi áp dụng.
+Tải `Dark-Poke-Header-Home-V14-40.ps1` vào `C:\Users\Bin77\Downloads`. Dừng server bằng Ctrl+C trước khi áp dụng.
 
 ```powershell
 cd "D:\freetime\dark-poke"
-powershell -NoProfile -ExecutionPolicy Bypass -File "C:\Users\Bin77\Downloads\Dark-Poke-Header-Home-V14-33.ps1" -DryRun
+powershell -NoProfile -ExecutionPolicy Bypass -File "C:\Users\Bin77\Downloads\Dark-Poke-Header-Home-V14-40.ps1" -DryRun
 if ($LASTEXITCODE -ne 0) { throw "DryRun chua dat; dung tai day." }
-powershell -NoProfile -ExecutionPolicy Bypass -File "C:\Users\Bin77\Downloads\Dark-Poke-Header-Home-V14-33.ps1"
+powershell -NoProfile -ExecutionPolicy Bypass -File "C:\Users\Bin77\Downloads\Dark-Poke-Header-Home-V14-40.ps1"
 if ($LASTEXITCODE -ne 0) { throw "Ban va chua thanh cong; xem loi phia tren." }
 npm run dev
 ```
@@ -23,6 +23,48 @@ npm run dev
 - `-ProjectRoot`: chỉ định thư mục dự án nếu không chạy từ `D:\freetime\dark-poke`.
 
 Bản vá không thêm package, không đổi `.env.local`, không thao tác Supabase hay SQL. Chạy lại lần hai sẽ báo "da ap dung" và không ghi gì.
+
+## V14.40: bầu trời sao nền đen ở khu Khám phá
+
+- Nền khu "Khám phá · 06 lối vào" đổi từ tím sang đen đêm để hình chính và tiêu đề nổi bật; bỏ các quầng sáng tím, xanh.
+- Bầu trời sao vẽ thành hai lớp ảnh lặp (`public/home-v14/night-stars.webp`, `night-sparkles.webp`): lớp chấm sao nhiều cỡ, có sao hơi xanh và hơi vàng, và lớp sao bốn cánh lấp lánh nhẹ (chỉ đổi độ mờ, tắt khi máy bật giảm chuyển động).
+- Hình chính hiện rõ hơn (không còn phủ tím); nhãn Khám phá, khung lối vào 01 và viền chân trời chuyển sang tông trắng, đen trung tính.
+
+## V14.39: footer dùng hình sóng lớn
+
+- Mép biển ở footer thay bằng hình sóng lớn kiểu tranh khắc gỗ (`public/brand/footer-wave.webp`): hình gốc và bản lật gương đặt cạnh nhau rồi lặp ngang nên không có đường nối; phần trời trong hình được làm trong suốt để lộ nền navy và họa tiết seigaiha phía sau.
+- Chân sóng mờ dần vào màu biển (#144e8a) nên không còn vạch cắt; lớp sóng tự vẽ của V14.36 đến V14.38 được ẩn.
+- Chiều cao dải sóng: 240 px trên máy tính, 200 px máy tính bảng, 132 px điện thoại.
+
+## V14.38: footer xanh đại dương, sóng lớn kiểu tranh khắc gỗ
+
+- Bảng màu footer đổi từ xanh ngọc sang xanh đại dương: trời xanh navy, biển xanh hoàng gia, bọt sóng trắng; chữ trong phần biển đổi sang trắng để dễ đọc; nút Chỉ đường nền trắng chữ navy.
+- Sóng phía trước to hơn (ô 300 × 130, cao 130 px trên máy tính, 96 px máy tính bảng, 72 px điện thoại): dải bọt trắng ôm đỉnh sóng, móng bọt cuộn quanh mép, chấm xanh trong bọt, các vệt xanh đậm và xanh nhạt trên mặt sóng.
+- Hai lớp sóng phía sau đậm hơn để sóng trước nổi bật; họa tiết seigaiha giữ nguyên, đổi sang tông xanh.
+
+## V14.37: sóng footer phong cách Nhật Bản
+
+- Mép trước của phần biển là một hàng sóng vỗ kiểu tranh Nhật: thân sóng cuộn thành xoáy, viền trắng và các nét mực song song, bọt sóng hình móng vuốt và giọt nước phía trên. Một ô 240 × 110 lặp ngang, co giãn theo chiều cao sóng nên không bị méo trên mọi màn hình.
+- Hai lớp sóng phía sau có viền trắng mờ để tách lớp.
+- Nền họa tiết kim cương đổi thành seigaiha (vòng cung đồng tâm chồng lớp) ở cả phần tối và phần biển.
+- Liên hệ gộp vào một khung tối cùng kiểu với khung bản đồ, chia ô bằng đường kẻ mảnh; biểu tượng trong vòng tròn viền.
+
+## V14.36: sóng footer ba lớp, footer gọn hơn
+
+- Mép sóng giữa hai phần footer thành ba lớp sóng chồng nhau (xanh đậm phía sau, xanh giữa, xanh biển phía trước), đường cong mềm tạo từ hai sóng sin cộng lại; bong bóng đặt trên đỉnh sóng hoặc nổi phía trên.
+- Liên hệ (hotline, Zalo, email, địa chỉ) chuyển xuống dưới các cột liên kết thành 4 thẻ nhỏ; khung bản đồ bên phải tự cao bằng cột trái, nên phần dưới footer ngắn hơn và không còn khoảng trống.
+- Điện thoại: hotline và Zalo nằm cạnh nhau, email và địa chỉ mỗi dòng một thẻ.
+
+## V14.35: bỏ khu giới thiệu dưới banner
+
+- Trang chủ đi thẳng từ banner xuống "Bán chạy": bỏ khối tiêu đề, câu giới thiệu và lối tắt Danh mục/Dịch vụ (V14.27). Các lối tắt vẫn có trên menu đầu trang.
+- Tiêu đề h1 của trang vẫn giữ nhưng ẩn khỏi màn hình, để Google và trình đọc màn hình hiểu trang.
+
+## V14.34: logo RolPoké
+
+- Logo mới nằm trong `public/brand/`: `rolpoke-logo.png` (xanh, nền trong suốt) cho nền sáng, `rolpoke-logo-white.png` (trắng) cho header khi nằm trên banner và cho footer tối; header tự đổi bản theo nền.
+- Biểu tượng tay (bản "Icon only") làm icon trình duyệt, icon cài app (192, 512) và icon iPhone (`apple-touch-icon.png`); `og.png` 1200 × 630 là ảnh khi chia sẻ link.
+- Dùng ở header, menu điện thoại, footer, trang quản trị và trang đăng nhập admin. Các file logo cũ (`public/logo.png`, `public/icons/…`) giữ nguyên, không còn được dùng.
 
 ## V14.33: màu chữ "Pokémon"
 
@@ -279,7 +321,7 @@ Tỉ lệ giống nhau trên mọi màn hình (máy tính, tablet, điện tho�
 - TCGplayer không có giá (thẻ promo, bản phát hành riêng…) thì khung tự mở giá Cardmarket kèm ghi chú, không còn báo "chưa có giá" trong khi phía dưới lại có giá.
 - Không nguồn nào có giá thì hiện liên kết tìm tin đăng trên TCGplayer và Cardmarket.
 - Khung Cardmarket riêng ở cột phải được bỏ để không lặp; cột phải chỉ còn thông tin lá bài.
-- Script V14.33 chạy được từ source gốc hoặc từ bản V14 đến V14.32.
+- Script V14.38 chạy được từ source gốc hoặc từ bản V14 đến V14.37.
 
 ## V14.3: tìm kiếm dạng bảng lệnh và thư viện thẻ có giá TCGplayer
 
@@ -330,7 +372,7 @@ Chi phí API: lần đầu xem một lá bài tốn khoảng 1 credit để kh�
 
 - Thay ảnh cắt giữa trên điện thoại bằng hai banner dọc mới: `public/home-v14/celebration-30th-portrait.webp`, `public/home-v14/perfect-order-portrait.webp`.
 - Xóa hai ảnh cũ `celebration-30th-mobile.webp`, `perfect-order-mobile.webp` (có sao lưu).
-- Script V14.33 chạy được từ source gốc hoặc từ bản đã áp dụng V14 đến V14.32.
+- Script V14.38 chạy được từ source gốc hoặc từ bản đã áp dụng V14 đến V14.37.
 
 ## Header
 
@@ -368,10 +410,10 @@ Chưa kiểm tra: Windows PowerShell 5.1 thật, Safari/iOS thật, dữ liệu 
 
 ## Khôi phục
 
-Script in đường dẫn `.patch-backup\Header-Home-V14-33-...` và lệnh rollback đầy đủ. Nếu typecheck/build sau khi vá thất bại, script tự khôi phục. Nếu file đã bị chỉnh tiếp sau khi vá, rollback dừng để không mất thay đổi đó.
+Script in đường dẫn `.patch-backup\Header-Home-V14-40-...` và lệnh rollback đầy đủ. Nếu typecheck/build sau khi vá thất bại, script tự khôi phục. Nếu file đã bị chỉnh tiếp sau khi vá, rollback dừng để không mất thay đổi đó.
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File "C:\Users\Bin77\Downloads\Dark-Poke-Header-Home-V14-33.ps1" -Rollback -BackupPath "D:\freetime\dark-poke\.patch-backup\Header-Home-V14-33-THOI-GIAN"
+powershell -NoProfile -ExecutionPolicy Bypass -File "C:\Users\Bin77\Downloads\Dark-Poke-Header-Home-V14-40.ps1" -Rollback -BackupPath "D:\freetime\dark-poke\.patch-backup\Header-Home-V14-40-THOI-GIAN"
 ```
 
 Nếu báo `Source mismatch`, không ghi đè cưỡng bức. Cần đối chiếu các file được liệt kê với source thực tế.
